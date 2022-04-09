@@ -1,0 +1,84 @@
+package kr.inhatc.spring;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class AcademicmanagementController {
+	
+	@GetMapping("cis_main")
+	public String hello() {
+		return "cis_main";
+	}
+	@GetMapping("cis_notice")
+	public String cismenu() {
+		return "cis_notice";
+	}
+	@GetMapping("cis_myinfo")
+	public String myinfo() {
+		return "cis_myinfo";
+	}
+	@GetMapping("cis_faminfo")
+	public String faminfo() {
+		return "cis_faminfo";
+	}
+	@GetMapping("cis_accinfo")
+	public String accinfo() {
+		return "cis_accinfo";
+	}
+	@GetMapping("cis_schedule")
+	public String schedule() {
+		return "cis_schedule";
+	}
+	@GetMapping("cis_course")
+	public String course() {
+		return "cis_course";
+	}
+	@GetMapping("cis_reportcard")
+	public String reportcard() {
+		return "cis_reportcard";
+	}
+	@GetMapping("cis_review")
+	public String review() {
+		return "cis_review";
+	}
+	@GetMapping("cis_academic_calender")
+	public String ac_cal() {
+		return "cis_academic_calender";
+	}
+	@GetMapping("cis_personal_calender")
+	public String pe_cal() {
+		return "cis_personal_calender";
+	}
+	@GetMapping("cr_main")
+	public String cr_main() {
+		return "cr_main";
+	}
+	@GetMapping("cr_registration")
+	public String cr_registration() {
+		return "cr_registration";
+	}
+	@GetMapping("cr_cancle")
+	public String cr_cancle() {
+		return "cr_cancle";
+	}
+	@GetMapping("cr_schedule")
+	public String cr_schedule() {
+		return "cr_schedule";
+	}
+	@GetMapping("index")
+	public String index() {
+		return "index";
+	}
+	@GetMapping("login_cis")
+	public String login_cis() {
+		return "login_cis";
+	}
+	@GetMapping("login_cr")
+	public String login_cr() {
+		return "login_cr";
+	}
+}
