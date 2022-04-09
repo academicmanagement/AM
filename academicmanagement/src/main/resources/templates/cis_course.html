@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>수강신청조회</title>
+<style type="text/css">
+	#course{
+		width:220px;
+		height:40px;
+		text-align: center;
+		background: #000080;
+		color: #fff;
+		font-weight:600;
+		margin-left:40px;
+		padding-top:10px;
+		font-size:20px;
+	}
+	table{
+		width:1400px;
+		margin-left:40px;
+		margin-right:40px;
+		height:650px;
+		border-spacing: 0px;
+	}
+	tr{
+		border:3px solid;
+		background: #fff;
+		text-align: center;
+	}
+	td{
+		height:50px;
+		border:1px solid #d0d0d0;
+	}
+	#category{
+		background: #A8C8F9;
+		font-weight:600;
+	}
+	#td_division{
+		width: 100px;
+	}
+	#td_grades{
+		width: 70px;
+	}
+	#td_department{
+		width: 400px;
+	}
+	#td_grade{
+		width: 70px;
+	}
+	#td_class{
+		width: 70px;
+	}
+	#td_professor{
+		width: 100px;
+	}
+	#left{
+		padding-left: 20px;
+		text-align:left;
+	}
+</style>
+</head>
+<body>
+	<p id="course">수강신청조회</p>
+	<table border="1">
+		<tr id="category">
+			<td id="td_division">이수구분</td>
+			<td>교과목명</td>
+			<td id="td_grades">학점</td>
+			<td id="td_department">개설학과</td>
+			<td id="td_grade">학년</td>
+			<td id="td_class">분반</td>
+			<td id="td_professor">담당교수</td>
+		</tr>
+		<tr>
+			<td>전공필수</td>
+			<td id="left">캡스톤디자인</td>
+			<td>2.0</td>
+			<td id="left">컴퓨터시스템과</td>
+			<td>3</td>
+			<td>B</td>
+			<td>김철진</td>
+		</tr>
+		<tr></tr>
+	</table>
+</body>
+</html>

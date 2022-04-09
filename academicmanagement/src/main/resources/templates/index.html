@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>인하공업 학사관리 시스템</title>
+<style type="text/css">
+	*{
+	margin:0;
+	padding:0;
+	}
+	/* 상단 메뉴부분의 css	*/
+	div {	/*	드래그 불가	*/
+		-ms-user-select : none;
+		-moz-user-select : -moz-none;
+		-khtml-user-select : none;
+		-webkit-user-select : none;
+		user-select : none;
+	}
+	hr {
+		margin-top:20px;
+		margin-bottom:20px;
+		margin-left:20px;
+		margin-right:20px;
+	}
+	ul li{
+		list-style:none;
+	}
+	a{
+		text-decoration:none;
+		color:#333
+	}
+	#top{
+		display:flex;
+	}
+	#menuUItop{
+		font-size:25px;
+		width:700px(fixed);
+		height:30px;
+		background:#fff;
+		line-height:50px;
+		margin:0 auto;
+		text-align:center;
+		display:block;
+		border-style:solid;
+		border-color:#fff;
+		font-weight:600;
+	}
+	#menuUItop > ul > li{
+		float:left;
+		width:200px;
+		margin-left:200px;
+		position:relative;
+	}
+	#menuUItop > ul > li:hover{
+		border-style:solid;
+		border-color:#fff #c8c8c8;
+	}
+	#cis{
+		width:320px;
+		margin:-20px;
+		font-size:20px;
+		color: #333;
+		background: #fff;
+		text-align:center;
+		border-style:solid;
+		border-color:#fff;
+		font-weight:600;
+		-ms-user-select : none;
+		-moz-user-select : -moz-none;
+		-khtml-user-select : none;
+		-webkit-user-select : none;
+		-webkit-touch-callout:none;
+		user-select : none;
+	}
+	/*	화면	*/
+	#_view{
+		width:96%;
+		height:750px;
+		margin:0px 20px 0px 20px;
+	}
+	/* 학사 공지 */
+	#nav{
+		background-color:white;
+		width:500px;
+		height:400px;
+		float:left;
+	}
+	
+	table{
+		width:500px;
+		height:280px;
+		border-spacing:0px;
+	}
+	tr{
+		border:3px solid;
+		background: #fff;
+		text-align:center;
+		font-size:9px;
+	}
+	td{
+		border:1px solid #d0d0d0;
+		height:20px;
+	}
+	#td_num{
+		width:40px;
+	}
+	#td_title{
+		width:120px;
+		text-align:left;
+	}
+	#td_day{
+		width:100px;
+	}
+	#td_file{
+		width:40px;
+	}
+	#category{
+		background:#000080;
+		color:#fff;
+	}
+	/* 학교이미지 */
+	#section{
+		width:900px;
+		height:400px;
+		text-align:left;
+		float:right;
+	}
+	#left{
+		position:absolute;
+		top:300px;
+		width:40px;
+		height:40px;
+		z-index:1;
+		left:600px;
+	}
+	#right{
+		position:absolute;
+		top:300px;
+		width:40px;
+		height:40px;
+		z-index:1;
+		right:60px;
+	}
+	/* 사이트 관련 정보 */
+	#footer{
+		border-top:2px solid;
+		border-bottom:2px solid;
+		border-color:#323232;
+		background-color:#444444;
+		height:100px;
+		clear:both;	
+	}
+	#info > p{
+    	font-size: 10px;
+    	color: rgba(255,255,255,0.6);
+	}
+</style>
+</head>
+<body>
+<hr color = "#323232" size="2">
+<!--  상단 메뉴부분 -->
+<div style="margin-left:50px" class="wrap_header">
+	<div id="top" class="container">
+		<div style="display:block">
+		<a href="/cis_main">
+			<img src="https://www.inhatc.ac.kr/sites/kr/images/common/logo_b.png" alt="인하공업전문대학">
+		</a>
+		<p id="cis">학사관리시스템</p>
+		</div>
+		<div id="menuUItop" class="menuUItop">
+			<ul>
+				<li><a href="/login_cr">수강신청</a>
+				<li><a href="/login_cis">종합정보</a>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- 뷰 부분 -->
+<hr color='#323232' size="2">
+<div id="_view">
+	<!-- 날씨, 학사공지 -->
+	<div id="nav">
+		<img src="img/weather.png" width="500" height="100px">
+		<table border="1">
+			<tr id="category">
+				<td id="td_num">번호</td>
+				<td>제목</td>
+				<td id="td_day">작성일</td>
+				<td id="td_file">첨부파일</td>
+			</tr>
+			<tr>
+				<td>번호</td>
+				<td id="td_title">제목</td>
+				<td>작성일</td>
+				<td>첨부파일</td>
+			</tr>
+			<tr>
+				<td>번호</td>
+				<td id="td_title">제목</td>
+				<td>작성일</td>
+				<td>첨부파일</td>
+			</tr>
+			<tr>
+				<td>번호</td>
+				<td id="td_title">제목</td>
+				<td>작성일</td>
+				<td>첨부파일</td>
+			</tr>
+			<tr></tr>
+		</table>
+	</div>
+	<!-- 이미지 부분 -->
+	<div id="section">
+		<img src="img/left.png" id="left">
+		<img src="img/right.png" id="right">
+		<img src="img/school1.jpg" width="900px" height="385px">
+	</div>
+	<!-- 사이트 관련 정보 -->
+	<div id="footer">
+		<div id="info">
+			<img src="https://www.inhatc.ac.kr/sites/kr/images/common/logo_foot.png" alt="인하공업전문대학">
+			<p>222212 인천광역시 미추홀구 인하로100 인하공업전문대학 TEL 032-870-2114</p>
+			<p>COPYRIGHT(c) INHA TECHNICAL COLLEGE. ALL RIGHTS RESERVED.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

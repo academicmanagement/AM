@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>성적표조회</title>
+<style type="text/css">
+	#reportcard{
+		width:220px;
+		height:40px;
+		text-align: center;
+		background: #000080;
+		color: #fff;
+		font-weight:600;
+		margin-left:40px;
+		padding-top:10px;
+		font-size:20px;
+	}
+	select{
+		width:300px;
+		height:50px;
+		margin-left:30px;
+		margin-top:20px;
+		background: #fff;
+		border: 1px solid #5b7a8b;
+		padding-left:10px;
+		font-size:18px;
+		font-weight:600;
+		color: #2e607d;
+	}
+	table{
+		width:1400px;
+		margin-left:40px;
+		margin-right:40px;
+		height:500px;
+		border-spacing: 0px;
+	}
+	tr{
+		border:3px solid;
+		background: #fff;
+		text-align: center;
+	}
+	td{
+		height:50px;
+		border:1px solid #d0d0d0;
+	}
+	#category{
+		background: #A8C8F9;
+		font-weight:600;
+	}
+	#td_division{
+		width: 100px;
+	}
+	#td_score{
+		width: 70px;
+	}
+	#td_grades{
+		width: 70px;
+	}
+	#left{
+		padding-left: 20px;
+		text-align:left;
+	}
+</style>
+</head>
+<body>
+<div style="display:flex">
+	<p id="reportcard">성적조회</p>
+	<select id="lookup">
+		<option selected>년도/학년/학기</option>
+		<option value="all">전체</option>
+		<option value="202231">2022년도 3학년 1학기</option>
+	</select>
+</div>
+	<table border="1">
+		<tr id="category">
+			<td id="td_division">이수구분</td>
+			<td>교과목명</td>
+			<td id="td_score">성적</td>
+			<td id="td_grades">학점</td>
+		</tr>
+		<tr>
+			<td>교양</td>
+			<td id="left">일본어회화</td>
+			<td>A+</td>
+			<td>4.5</td>
+		</tr>
+		<tr></tr>
+	</table>
+</body>
+</html>

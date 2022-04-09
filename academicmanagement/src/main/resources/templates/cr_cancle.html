@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>수강신청취소</title>
+<style type="text/css">
+	#regist{
+		margin:0px;
+		font-size:20px;
+		font-weight:620;
+	}
+	table{
+		width:99%;
+		height:680px;
+		margin-top:20px;
+		border-spacing: 0px;
+	}
+	tr{
+		border:3px solid;
+		background: #fff;
+		text-align: center;
+	}
+	td{
+		border:1px solid #d0d0d0;
+		height: 30px;
+	}
+	#category{
+		background: #cfe8ff;
+		font-weight:600;
+	}
+	input[type="button"]{
+		background: #b7dafd;
+	}
+	input[type="button"]:hover{
+		background: #e1f0ff;
+		cursor:pointer
+	}
+</style>
+</head>
+<body>
+	<p id="regist"> ▲ 수강신청취소</p>
+	<table border="1">
+		<tr id="category">
+			<td id="td_num">NO</td>
+			<td id="rb">수강취소</td>
+			<td id="td_grade">학년</td>
+			<td id="td_code">코드</td>
+			<td id="td_class">분반</td>
+			<td id="td_classname">교과목명</td>
+			<td id="td_division">이수구분</td>
+			<td id="td_grades">학점</td>
+			<td id="td_professor">담당교수</td>
+			<td id="td_time">강의시간</td>
+			<td id="td_studentlimit">인원제한</td>
+			<td id="td_student">수강인원</td>
+			<td id="td_review">리뷰</td>
+			<td id="td_department">개설학과</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td><input type="button" value="취소"/></td>
+			<td>3</td>
+			<td>45001</td>
+			<td>A</td>
+			<td>교과목명</td>
+			<td>전공실습</td>
+			<td>3.0</td>
+			<td>OOO</td>
+			<td>화91011</td>
+			<td>없음</td>
+			<td>0</td>
+			<td><input type="button" value="리뷰"/></td>
+			<td>컴퓨터시스템과</td>
+		</tr>
+		<tr></tr>
+	</table>
+</body>
+</html>
