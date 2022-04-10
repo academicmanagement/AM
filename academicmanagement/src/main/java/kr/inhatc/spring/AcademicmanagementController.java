@@ -81,4 +81,8 @@ public class AcademicmanagementController {
 	public String login_cr() {
 		return "login_cr";
 	}
+	@GetMapping("login_mg")
+	public String login_mg() {
+		return "login_mg";
+	}
 }
