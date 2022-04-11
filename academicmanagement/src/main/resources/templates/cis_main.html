@@ -98,7 +98,7 @@
 		font-weight:600;
 		margin-right:30px;
 	}
-	#logout_btn{
+	input[type="button"]{
 		width:100px;
 		height:40px;
 		background: rgb(6,14,131);
@@ -114,7 +114,7 @@
 		transition: all 0.3s ease;
 		background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
 	}
-	#logout_btn:hover{
+	input[type="button"]:hover{
 		background: rgb(0,3,255);
 		background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
 	}
@@ -164,7 +164,8 @@
 		</div>
 		<div id="logout">
 			<p id="logout_id">201745037(황의충)</p>
-			<input type = 'button' id="logout_btn" value='로그아웃' onclick="location.href='#'"/>
+			<input type = 'button' id="logout_btn" value='로그아웃' onclick="location.href='/index'"/>
+			<input type = 'button' id="cr_btn" style="margin-left:20px" value='수강신청' onclick="location.href='/cr_main'"/>
 		</div>
 	</div>
 </div>

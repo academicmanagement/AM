@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>강의 등록</title>
+<style type="text/css">
+	#ac{
+		width:220px;
+		height:40px;
+		text-align: center;
+		background: #000080;
+		color: #fff;
+		font-weight:600;
+		margin-left:40px;
+		padding-top:10px;
+		font-size:20px;
+	}
+	#regist{
+		margin:0px;
+		font-size:20px;
+		font-weight:620;
+	}
+	input[type="text"]{
+		width:80px;
+		height:35px;
+		margin-left:10px;
+		margin-top:15px;
+		background: #fff;
+		border: 1px solid #5b7a8b;
+		padding-left:10px;
+		font-size:15px;
+		font-weight:500;
+		color: #2e607d;
+	}
+	#registrationbtn{
+		width:100px;
+		height:40px;
+		margin-left:30px;
+		margin-top:15px;
+		text-align: center;
+		font-size:20px;
+		font-weight: 600;
+		cursor: pointer;
+		outline: none;
+		border-color:#5b9db5;
+		transition: all 0.3s ease;
+	}
+	table{
+		width:99%;
+		height:680px;
+		margin-top:20px;
+		border-spacing: 0px;
+	}
+	tr{
+		border:3px solid;
+		background: #fff;
+		text-align: center;
+	}
+	td{
+		border:1px solid #d0d0d0;
+		height: 30px;
+	}
+	#category{
+		background: #cfe8ff;
+		font-weight:600;
+	}
+	input[type="button"]{
+		background: #b7dafd;
+	}
+	input[type="button"]:hover{
+		background: #e1f0ff;
+		cursor:pointer
+	}
+</style>
+</head>
+<body>
+	<p id="ac">강의 등록</p>
+	<div style="display:flex">
+		<input type="text" placeholder="학년"/>
+		<input type="text" placeholder="코드"/>
+		<input type="text" placeholder="분반"/>
+		<input type="text" style="width:150px" placeholder="교과목명"/>
+		<input type="text" placeholder="이수구분"/>
+		<input type="text" placeholder="학점"/>
+		<input type="text" placeholder="담당교수"/>
+		<input type="text" style="width:150px" placeholder="강의시간"/>
+		<input type="text" placeholder="인원제한"/>
+		<input type="text" placeholder="수강인원"/>
+		<input type="text" style="width:150px" placeholder="개설학과"/>
+		<input type="button" id="registrationbtn" value="등록"/>
+	</div>
+	<table border="1">
+		<tr id="category">
+			<td id="td_num">NO</td>
+			<td id="rb">강의삭제</td>
+			<td id="td_grade">학년</td>
+			<td id="td_code">코드</td>
+			<td id="td_class">분반</td>
+			<td id="td_classname">교과목명</td>
+			<td id="td_division">이수구분</td>
+			<td id="td_grades">학점</td>
+			<td id="td_professor">담당교수</td>
+			<td id="td_time">강의시간</td>
+			<td id="td_studentlimit">인원제한</td>
+			<td id="td_student">수강인원</td>
+			<td id="td_department">개설학과</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td><input type="button" value="삭제"/></td>
+			<td>3</td>
+			<td>45001</td>
+			<td>A</td>
+			<td>교과목명</td>
+			<td>전공실습</td>
+			<td>3.0</td>
+			<td>OOO</td>
+			<td>화91011</td>
+			<td>없음</td>
+			<td>0</td>
+			<td>컴퓨터시스템과</td>
+		</tr>
+		<tr></tr>
+	</table>
+</body>
+</html>

@@ -85,4 +85,20 @@ public class AcademicmanagementController {
 	public String login_mg() {
 		return "login_mg";
 	}
+	@GetMapping("admin_main")
+	public String admin_main() {
+		return "admin_main";
+	}
+	@GetMapping("admin_usercreate")
+	public String admin_usercreate() {
+		return "admin_usercreate";
+	}
+	@GetMapping("admin_userdelete")
+	public String admin_userdelete() {
+		return "admin_userdelete";
+	}
+	@GetMapping("admin_course")
+	public String admin_course() {
+		return "admin_course";
+	}
 }
