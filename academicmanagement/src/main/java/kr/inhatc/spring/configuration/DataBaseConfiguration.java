@@ -39,12 +39,12 @@ public class DataBaseConfiguration {
 	
 	@Bean
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		SqlSessionFactoryBean sqlSeesionFactoryBean = new SqlSessionFactoryBean();
-		sqlSeesionFactoryBean.setDataSource(dataSource);
-		sqlSeesionFactoryBean.setMapperLocations(
-					applicationContext.getResources("classpath:/mapper/**/sql-*.xml")
+		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+		sqlSessionFactoryBean.setDataSource(dataSource);
+		sqlSessionFactoryBean.setMapperLocations(
+					//applicationContext.getResources("classpath:/mapper/**/sql-*.xml")
 				);
-		return sqlSeesionFactoryBean.getObject();
+		return sqlSessionFactoryBean.getObject();
 	}
 	
 	@Bean
