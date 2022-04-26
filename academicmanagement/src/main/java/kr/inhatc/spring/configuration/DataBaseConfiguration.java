@@ -1,6 +1,7 @@
 package kr.inhatc.spring.configuration;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
@@ -47,8 +48,29 @@ public class DataBaseConfiguration {
 		return sqlSessionFactoryBean.getObject();
 	}
 	
+	//카멜표기법 - 스네이크 표기법 매핑
+	@Bean
+	@ConfigurationProperties(prefix = "mybatis.configuration")
+	public org.apache.ibatis.session.Configuration mybatisConfig(){
+		return new org.apache.ibatis.session.Configuration();
+	}
+	
 	@Bean
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
+	}
+	
+	/**
+	 * <pre>
+	 * 1. 개요 : JPA 설정
+	 * 2. 처리내용 : JPA 설정 빈 등록
+	 * </pre>
+	 * @Method Name : hibernateConfig
+	 * @return
+	 */
+	@Bean
+	@ConfigurationProperties(prefix = "spring.jpa")
+	public Properties hibernateConfig() {
+		return new Properties();
 	}
 }
