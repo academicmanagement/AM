@@ -67,6 +67,7 @@
 </style>
 </head>
 <body>
+<form action="/signUp" method="get" object="userForm">
 <p id="uc">계정 생성</p>
 <div id="container">
 	<div style="display:flex">
@@ -79,15 +80,16 @@
 	</div>
 	<div style="display:flex">
 		<p id="category">학과</p>
-		<input type="text" id="department">
+		<input type="text" id="dept">
 	</div>
 	<div style="display:flex">
 		<p id="category">반</p>
-		<input type="text" id="class">
+		<input type="text" id="ban">
 	</div>
 	<div>
-		<input type="button" id="savebtn" value="저장">
+		<button type="submit" id="savebtn">저장</button>
 	</div>
 </div>
+</form>
 </body>
 </html>
