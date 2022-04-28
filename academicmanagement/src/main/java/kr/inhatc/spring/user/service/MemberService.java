@@ -21,38 +21,36 @@ public class MemberService {
 
 	@Autowired
 	private MemberRepository memberRepository;
-	
-	public List<MemberVo> findAll(){
+
+	public List<MemberVo> findAll() {
 		List<MemberVo> members = new ArrayList<>();
 		memberRepository.findAll().forEach(e -> members.add(e));
 		return members;
 	}
-	
-	public Optional<MemberVo> findById(Long mbrNo){
+
+	public Optional<MemberVo> findById(Long mbrNo) {
 		Optional<MemberVo> member = memberRepository.findById(mbrNo);
 		return member;
 	}
-	
+
 	public void deleteById(Long mbrNo) {
 		memberRepository.deleteById(mbrNo);
 	}
-	
-	/*
-	 * public MemberVo save(MemberVo member) { memberRepository.save(member); return
-	 * member; }
-	 */
-	
-	@Transactional
-	public String createMember(MemberDTO form) {
-		MemberVo member = form.toEntity();
+
+	public MemberVo save(MemberVo member) {
 		memberRepository.save(member);
-		return member.getId();
+		return member;
 	}
-	
+
+	/*
+	 * @Transactional public String createMember(MemberDTO form) { MemberVo member =
+	 * form.toEntity(); memberRepository.save(member); return member.getId(); }
+	 */
+
 	public void updateById(Long mbrNo, MemberVo member) {
 		Optional<MemberVo> e = memberRepository.findById(mbrNo);
-		
-		if(e.isPresent()) {
+
+		if (e.isPresent()) {
 			e.get().setMbrNo(member.getMbrNo());
 			e.get().setId(member.getId());
 			e.get().setPw(member.getPw());
