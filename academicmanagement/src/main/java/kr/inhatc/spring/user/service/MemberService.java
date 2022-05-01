@@ -15,8 +15,8 @@ import kr.inhatc.spring.user.dto.MemberDTO;
 import kr.inhatc.spring.user.entity.MemberVo;
 
 @Service
-@Transactional
-@RequiredArgsConstructor
+//@Transactional
+//@RequiredArgsConstructor
 public class MemberService {
 
 	@Autowired
@@ -32,7 +32,7 @@ public class MemberService {
 		Optional<MemberVo> member = memberRepository.findById(mbrNo);
 		return member;
 	}
-
+	
 	public void deleteById(Long mbrNo) {
 		memberRepository.deleteById(mbrNo);
 	}
@@ -41,11 +41,20 @@ public class MemberService {
 		memberRepository.save(member);
 		return member;
 	}
-
-	/*
-	 * @Transactional public String createMember(MemberDTO form) { MemberVo member =
-	 * form.toEntity(); memberRepository.save(member); return member.getId(); }
-	 */
+	//로그인 기능
+	public boolean login(MemberVo member) {
+		List<MemberVo> findMember = memberRepository.findById(member.getId());
+		if(findMember == null) {
+			return false;
+		}
+		else {
+			findMember = memberRepository.findByPw(member.getPw());
+			if(findMember == null) {
+				return false;
+			}
+			else return true;
+		}
+	}
 
 	public void updateById(Long mbrNo, MemberVo member) {
 		Optional<MemberVo> e = memberRepository.findById(mbrNo);

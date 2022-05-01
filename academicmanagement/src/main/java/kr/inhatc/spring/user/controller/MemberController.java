@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.inhatc.spring.user.dto.MemberDTO;
 import kr.inhatc.spring.user.entity.MemberVo;
+import kr.inhatc.spring.user.repository.MemberRepository;
 import kr.inhatc.spring.user.service.MemberService;
 
 @Controller
@@ -66,32 +67,21 @@ public class MemberController {
 		memberService.updateById(mbrNo, member);
 		return new ResponseEntity<MemberVo>(member, HttpStatus.OK);
 	}
-
-	// 회원 입력
-
+	
+	// 로그인 체크
+	@PostMapping("/signIn")
+	public String signIn(MemberVo member) {
+		if(memberService.login(member)) {
+			return "/cis_main";
+		}
+		else return "/index";
+	}
+	
+	// 회원가입
 	@PostMapping("/signUp")
 	public String joinMember(MemberVo member) {
 		memberService.save(member);
 		return "/index";
 	}
-
-	/*
-	 * @GetMapping("/signUp") public String createUserForm(Model model) {
-	 * model.addAttribute("userForm", new MemberDTO()); return "/index"; }
-	 */
-
-	/*
-	 * @PostMapping("/signUp") public String createUser(@Valid MemberDTO form,
-	 * BindingResult result) { if (result.hasErrors()) { return "/index"; }
-	 * memberService.createMember(form);
-	 * 
-	 * return "/index"; }
-	 */
-
-	/*
-	 * @PostMapping("/signUp") public ResponseEntity<MemberVo> save(MemberVo member)
-	 * { return new ResponseEntity<MemberVo>(memberService.save(member),
-	 * HttpStatus.OK); }
-	 */
 
 }

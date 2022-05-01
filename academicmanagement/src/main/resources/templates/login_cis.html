@@ -137,6 +137,7 @@ a {
 </style>
 </head>
 <body>
+<form action="signIn" method="post">
 	<!-- 상단 부분-->
 	<div style="margin-left: 50px" class="wrap_header">
 		<div id="top">
@@ -169,15 +170,15 @@ a {
 						<tr>
 							<td height="30"><label
 								style="margin-left: 25px; margin-right: 50px;">아이디(학번)</label></td>
-							<td><input type="text" placeholder="ID" id="id"
+							<td><input type="text" placeholder="ID" id="id" name="id"
 								class="account" style="width: 250px; margin-right: 100px;">
 							<td rowspan="2">
-								<button id="login" class="account" onClick="location.href='/cis_main'">login</button>
+								<button type="submit" id="login" class="account">login</button>
 						<tr>
 							<td height="30"><label
 								style="margin-left: 25px; margin-right: 50px;">패스워드</label></td>
-							<td><input type="password" placeholder="Password"
-								id="password" class="account"
+							<td><input type="text" placeholder="Password" name="pw"
+								id="pw" class="account"
 								style="width: 250px; margin-right: 100px;"></td>
 						</tr>
 					</tbody>
@@ -192,5 +193,6 @@ a {
 			</div>
 		</div>
 	</div>
+</form>
 </body>
 </html>

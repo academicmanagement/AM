@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "member")
 //@DynamicInsert
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)	//디폴트 생성자 생성
 @Data	//getter, setter, ToString 자동 생성
 public class MemberVo {
