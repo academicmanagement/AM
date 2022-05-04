@@ -122,6 +122,9 @@ a {
 	border-color: transparent;
 	color: white;
 }
+button:hover {
+	cursor: pointer;
+}
 
 .account {
 	display: block;
@@ -137,13 +140,12 @@ a {
 </style>
 </head>
 <body>
-<form action="signIn" method="post">
 	<!-- 상단 부분-->
 	<div style="margin-left: 50px" class="wrap_header">
 		<div id="top">
 		<!-- 로고 이미지 -->
 			<div style="display: block">
-				<a href="/cis_main" id="inha"> <img
+				<a href="/" id="inha"> <img
 					src="https://www.inhatc.ac.kr/sites/kr/images/common/logo_b.png"
 					height="70" alt="인하공업전문대학" style="margin-top: 50px;">
 				</a>
@@ -164,6 +166,7 @@ a {
 				<p>서비스 이용을 위해 로그인을 해 주시기 바랍니다.</p>
 			</div>
 			<div class="container" style="margin-top: 50px;">
+			<form action="/signInCis" method="post">
 				<!-- ID/PW 입력창 -->
 				<table border="0" cellpadding="0" cellspacing="0" wdith="100%">
 					<tbody>
@@ -177,7 +180,7 @@ a {
 						<tr>
 							<td height="30"><label
 								style="margin-left: 25px; margin-right: 50px;">패스워드</label></td>
-							<td><input type="text" placeholder="Password" name="pw"
+							<td><input type="password" placeholder="Password" name="pw"
 								id="pw" class="account"
 								style="width: 250px; margin-right: 100px;"></td>
 						</tr>
@@ -185,6 +188,7 @@ a {
 				</table>
 				<p id="alert" class="account"></p>
 			</div>
+			</form>
 			<hr color="#323232" size="1">
 			<!-- ID/PW 찾기 -->
 			<div id="login_look">
@@ -193,6 +197,5 @@ a {
 			</div>
 		</div>
 	</div>
-</form>
 </body>
 </html>

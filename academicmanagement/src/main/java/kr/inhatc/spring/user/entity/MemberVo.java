@@ -27,9 +27,13 @@ public class MemberVo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long mbrNo;
 	
+	@Column
 	private String id;
+	@Column
 	private String pw;
+	@Column
 	private String dept;
+	@Column
 	private String ban;
 	
 	@Builder

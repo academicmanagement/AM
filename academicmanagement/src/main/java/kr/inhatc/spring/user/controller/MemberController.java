@@ -1,9 +1,12 @@
 package kr.inhatc.spring.user.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -25,11 +28,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.inhatc.spring.user.dto.MemberDTO;
 import kr.inhatc.spring.user.entity.MemberVo;
 import kr.inhatc.spring.user.repository.MemberRepository;
 import kr.inhatc.spring.user.service.MemberService;
+import kr.inhatc.spring.user.utils.ScriptUtils;
 
 @Controller
 public class MemberController {
@@ -39,6 +44,8 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+	
+	ScriptUtils scriptUtils;
 
 	// 모든 회원 조회
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -67,21 +74,31 @@ public class MemberController {
 		memberService.updateById(mbrNo, member);
 		return new ResponseEntity<MemberVo>(member, HttpStatus.OK);
 	}
+	// 로그인 체크
+	@PostMapping("/signInCis")
+	public String signInCis(HttpServletResponse response,MemberVo member) throws IOException {
+		if(memberService.login(member)) {
+			return "redirect:/cis_main";
+		}
+		scriptUtils.alertAndMovePage(response, "아이디 또는 비밀번호가 틀렸습니다!!", "/login_cis");
+		return "/login_cis";
+	}
 	
 	// 로그인 체크
-	@PostMapping("/signIn")
-	public String signIn(MemberVo member) {
-		if(memberService.login(member)) {
-			return "/cis_main";
+		@PostMapping("/signInCr")
+		public String signInCr(HttpServletResponse response,MemberVo member) throws IOException {
+			if(memberService.login(member)) {
+				return "redirect:/cr_main";
+			}
+			scriptUtils.alertAndMovePage(response, "아이디 또는 비밀번호가 틀렸습니다!!", "/login_cr");
+			return "/login_cr";
 		}
-		else return "/index";
-	}
 	
 	// 회원가입
 	@PostMapping("/signUp")
 	public String joinMember(MemberVo member) {
 		memberService.save(member);
-		return "/index";
+		return "redirect:/";
 	}
 
 }

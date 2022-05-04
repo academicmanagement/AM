@@ -1,6 +1,7 @@
 package kr.inhatc.spring.user.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,4 +19,6 @@ public interface MemberRepository extends JpaRepository<MemberVo, Long>{
 	public List<MemberVo> findByPw(String pw);	//pw 조회
 	public List<MemberVo> findByDept(String dept);	//dept 조회
 	public List<MemberVo> findByBan(String ban);	//ban 조회
+	
+	public MemberVo findByIdAndPw(String id, String pw);	//id, pw 조회
 }
