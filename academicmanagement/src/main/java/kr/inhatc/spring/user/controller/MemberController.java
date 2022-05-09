@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -29,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
+import kr.inhatc.spring.user.constants.SessionConstants;
 import kr.inhatc.spring.user.dto.MemberDTO;
 import kr.inhatc.spring.user.entity.MemberVo;
 import kr.inhatc.spring.user.repository.MemberRepository;
@@ -76,8 +77,10 @@ public class MemberController {
 	}
 	// 로그인 체크
 	@PostMapping("/signInCis")
-	public String signInCis(HttpServletResponse response,MemberVo member) throws IOException {
+	public String signInCis(HttpServletRequest request, HttpServletResponse response, MemberVo member) throws IOException {
 		if(memberService.login(member)) {
+			HttpSession session = request.getSession();
+			session.setAttribute("id", member.getId());
 			return "redirect:/cis_main";
 		}
 		scriptUtils.alertAndMovePage(response, "아이디 또는 비밀번호가 틀렸습니다!!", "/login_cis");
@@ -100,5 +103,15 @@ public class MemberController {
 		memberService.save(member);
 		return "redirect:/";
 	}
+	// 로그아웃
+	@PostMapping("/logoutbtn")
+	public String logout(HttpServletRequest request) {
 
+	    HttpSession session = request.getSession(false);
+	    if (session != null) {
+	        session.invalidate();   // 세션 날림
+	    }
+
+	    return "redirect:/";
+	}
 }
