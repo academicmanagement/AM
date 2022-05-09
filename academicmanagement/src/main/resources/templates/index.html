@@ -182,7 +182,12 @@
 <div id="_view">
 	<!-- 날씨, 학사공지 -->
 	<div id="nav">
-		<img src="img/weather.png" width="500" height="100px">
+		<div>
+		<P th:text="${test1}">   </P>
+		<P>  The Test is ${test2}  </P>
+		<!--<img src="img/weather.png" width="500" height="100px">-->
+		</div>
+		<div>
 		<table border="1">
 			<tr id="category">
 				<td id="td_num">번호</td>
@@ -210,6 +215,7 @@
 			</tr>
 			<tr></tr>
 		</table>
+		</div>
 	</div>
 	<!-- 이미지 부분 -->
 	<div id="section">
