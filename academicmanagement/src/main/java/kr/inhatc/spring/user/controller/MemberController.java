@@ -45,7 +45,7 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
-	
+
 	ScriptUtils scriptUtils;
 
 	// 모든 회원 조회
@@ -75,10 +75,12 @@ public class MemberController {
 		memberService.updateById(mbrNo, member);
 		return new ResponseEntity<MemberVo>(member, HttpStatus.OK);
 	}
+
 	// 로그인 체크
 	@PostMapping("/signInCis")
-	public String signInCis(HttpServletRequest request, HttpServletResponse response, MemberVo member) throws IOException {
-		if(memberService.login(member)) {
+	public String signInCis(HttpServletRequest request, HttpServletResponse response, MemberVo member)
+			throws IOException {
+		if (memberService.login(member)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", member.getId());
 			return "redirect:/cis_main";
@@ -86,32 +88,35 @@ public class MemberController {
 		scriptUtils.alertAndMovePage(response, "아이디 또는 비밀번호가 틀렸습니다!!", "/login_cis");
 		return "/login_cis";
 	}
-	
+
 	// 로그인 체크
-		@PostMapping("/signInCr")
-		public String signInCr(HttpServletResponse response,MemberVo member) throws IOException {
-			if(memberService.login(member)) {
-				return "redirect:/cr_main";
-			}
-			scriptUtils.alertAndMovePage(response, "아이디 또는 비밀번호가 틀렸습니다!!", "/login_cr");
-			return "/login_cr";
+	@PostMapping("/signInCr")
+	public String signInCr(HttpServletRequest request,HttpServletResponse response, MemberVo member) throws IOException {
+		if (memberService.login(member)) {
+			HttpSession session = request.getSession();
+			session.setAttribute("id", member.getId());
+			return "redirect:/cr_main";
 		}
-	
+		scriptUtils.alertAndMovePage(response, "아이디 또는 비밀번호가 틀렸습니다!!", "/login_cr");
+		return "/login_cr";
+	}
+
 	// 회원가입
 	@PostMapping("/signUp")
 	public String joinMember(MemberVo member) {
 		memberService.save(member);
 		return "redirect:/";
 	}
+
 	// 로그아웃
 	@PostMapping("/logoutbtn")
 	public String logout(HttpServletRequest request) {
 
-	    HttpSession session = request.getSession(false);
-	    if (session != null) {
-	        session.invalidate();   // 세션 날림
-	    }
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate(); // 세션 날림
+		}
 
-	    return "redirect:/";
+		return "redirect:/";
 	}
 }
