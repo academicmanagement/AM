@@ -38,7 +38,13 @@ public class MemberService {
 	public void deleteById(Long mbrNo) {
 		memberRepository.deleteById(mbrNo);
 	}
+	
+	//선택 회원 삭제
+	public void deleteAll(Long[] deleteId) {
+		memberRepository.deleteMember(deleteId);
+	}
 
+	//회원 가입
 	public MemberVo save(MemberVo member) {
 		memberRepository.save(member);
 		return member;

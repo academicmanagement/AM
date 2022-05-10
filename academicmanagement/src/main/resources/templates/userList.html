@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>사용자 리스트</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+	<div class="container">
+		<h2>사용자 목록</h2>
+		<form action="/deleteMember" id="frm" method="post">
+		<table class="board_list">
+			<colgroup>
+				<!-- 체크박스, 아이디, 학과, 반 가로너비 -->
+				<col width="10%"/>
+				<col width="40%"/>
+				<col width="40%"/>
+				<col width="10%"/>
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col"><input type="checkbox" id="chkAll"></th>
+					<th scope="col">아이디</th>
+					<th scope="col">학과</th>
+					<th scope="col">반</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+					<td><input type="checkbox" name="deleteId" th:value="${vo.mbrNo}"/></td>
+					<td th:text="${vo.id}"></td>
+					<td th:text="${vo.dept}"></td>
+					<td th:text="${vo.ban}"></td>
+				</tr>
+				<tr th:unless="${#lists.size(list)} > 0">
+					<td colspan="4">조회된 결과가 없습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="button" class="btn" onclick="fnDelete()">Delete</button>
+		</form>
+	</div>
+	<!--부트스트랩 js, jquery 추가-->
+	<script src="/js/lib/jquery.min.js"></script>
+    <script src="/js/lib/bootstrap.min.js"></script>
+	<script th:inline="javascript">
+	//head 체크박스 선택시 전체 체크, 전체 체크해제
+		$("#chkAll").click(function() {
+			if (this.checked) {
+				$("input[name='deleteId']").prop("checked", true);
+			} else {
+				$("input[name='deleteId']").prop("checked", false);
+			}
+		});
+	//회원 삭제 함수
+	function fnDelete() {
+			let delInpChkLen = $("input[name='deleteId']:checked").length;
+			
+			if (delInpChkLen > 0) {
+				if (confirm("해당 회원을 삭제하시겠습니까?")) {
+					let frm = $("#frm");
+					frm.submit();
+				}
+			} else {
+				alert("Not selected.");
+			}
+		}
+	</script>
+</body>
+</html>
