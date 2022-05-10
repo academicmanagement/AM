@@ -76,9 +76,10 @@
 	}
 	/*	화면	*/
 	#_view{
-		width:96%;
-		height:750px;
+		width:700px(fixed);
+		height400px;
 		margin:0px 20px 0px 20px;
+		display:flex;
 	}
 	/* 학사 공지 */
 	#nav{
@@ -86,11 +87,12 @@
 		width:500px;
 		height:400px;
 		float:left;
+		display:block;
 	}
 	
 	table{
 		width:500px;
-		height:280px;
+		height:450px;
 		border-spacing:0px;
 	}
 	tr{
@@ -122,14 +124,14 @@
 	}
 	/* 학교이미지 */
 	#section{
-		width:900px;
-		height:400px;
+		width:100%;
+		height:100%;
 		text-align:left;
 		float:right;
 	}
 	#left{
 		position:absolute;
-		top:300px;
+		top:450px;
 		width:40px;
 		height:40px;
 		z-index:1;
@@ -137,7 +139,7 @@
 	}
 	#right{
 		position:absolute;
-		top:300px;
+		top:450px;
 		width:40px;
 		height:40px;
 		z-index:1;
@@ -149,12 +151,29 @@
 		border-bottom:2px solid;
 		border-color:#323232;
 		background-color:#444444;
+		width:100%;
 		height:100px;
 		clear:both;	
+		position: absolute;
+		bottom:0px;
+		margin-left:-20px;
 	}
 	#info > p{
     	font-size: 10px;
     	color: rgba(255,255,255,0.6);
+	}
+	#weatherP{
+		font-size:20px;
+		line-height:60px;
+		color:#1583AF;
+		margin:0 auto;
+		font-weight:600;
+	}
+	#temperatureP{
+		font-size:50px;
+		line-height:80px;
+		margin:0 auto;
+		font-weight:600;
 	}
 </style>
 </head>
@@ -182,10 +201,12 @@
 <div id="_view">
 	<!-- 날씨, 학사공지 -->
 	<div id="nav">
-		<div>
-		<P th:text="${test1}">   </P>
-		<P>  The Test is ${test2}  </P>
-		<!--<img src="img/weather.png" width="500" height="100px">-->
+		<div style="margin:30px 0px 30px 60px; display:flex">
+			<img th:src=${wimg} width="80px" height="80px"/>
+			<div style="display:flex">
+				<P th:text="${temperature}" id="temperatureP"></P>
+				<P th:text="${weather}" id="weatherP"></P>
+			</div>
 		</div>
 		<div>
 		<table border="1">
@@ -218,10 +239,10 @@
 		</div>
 	</div>
 	<!-- 이미지 부분 -->
-	<div id="section">
+	<div id="section" style="margin-left:30px">
 		<img src="img/left.png" id="left">
 		<img src="img/right.png" id="right">
-		<img src="img/school1.jpg" width="900px" height="385px">
+		<img src="img/school1.jpg" width="1300px" height="auto">
 	</div>
 	<!-- 사이트 관련 정보 -->
 	<div id="footer">

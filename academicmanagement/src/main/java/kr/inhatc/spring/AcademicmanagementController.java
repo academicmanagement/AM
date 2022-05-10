@@ -69,10 +69,10 @@ public class AcademicmanagementController {
 	public String cr_schedule() {
 		return "cr_schedule";
 	}
-	@GetMapping("/")
+	/*@GetMapping("/")
 	public String index() {
 		return "index";
-	}
+	}*/
 	@GetMapping("login_cis")
 	public String login_cis() {
 		return "login_cis";
