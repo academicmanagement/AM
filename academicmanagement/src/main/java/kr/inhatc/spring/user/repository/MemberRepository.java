@@ -20,7 +20,7 @@ public interface MemberRepository extends JpaRepository<MemberVo, Long>{
 	static final String DELETE_MEMBER = "DELETE FROM MEMBER " + "WHERE MBR_NO IN (:deleteList)";
 	//long이 아니라 Long으로 작성
 	//findBy 뒤에 컬럼명을 붙여주면 이를 이용한 검색이 가능하다
-	public List<MemberVo> findById(String id);	//id 조회
+	public MemberVo findById(String id);	//id 조회
 	public List<MemberVo> findByPw(String pw);	//pw 조회
 	public List<MemberVo> findByDept(String dept);	//dept 조회
 	public List<MemberVo> findByBan(String ban);	//ban 조회

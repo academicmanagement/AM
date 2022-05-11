@@ -107,9 +107,15 @@ public class MemberController {
 
 	// 회원가입
 	@PostMapping("/signUp")
-	public String joinMember(MemberVo member) {
-		memberService.save(member);
-		return "redirect:/";
+	public String joinMember(HttpServletResponse response, MemberVo member) throws IOException {
+		
+		if(memberService.findById(member)) {
+			scriptUtils.alertAndMovePage(response, "중복된 아이디입니다!", "/admin_usercreate");
+		}
+		else {
+			memberService.save(member);
+		}
+		return "/admin_usercreate";	
 	}
 
 	// 로그아웃
@@ -141,5 +147,15 @@ public class MemberController {
 			throw new Exception(e.getMessage());
 		}
 		return "redirect:/userList";
+	}
+	
+	//관리자 로그인
+	@PostMapping("/signInMg")
+	public String signInMg(HttpServletResponse response, String pw) throws IOException {
+		if(pw.equals("1234")) {	//관리자 비밀번호
+			return "redirect:/admin_main";
+		}
+		scriptUtils.alertAndMovePage(response, "아이디 또는 비밀번호가 틀렸습니다!!", "/login_mg");
+		return "/login_mg";
 	}
 }
