@@ -5,6 +5,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>인하공업 학사관리 시스템</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style type="text/css">
 	*{
 	margin:0;
@@ -29,22 +31,25 @@
 	}
 	a{
 		text-decoration:none;
-		color:#333
+		color:white;
+	}
+	a:link{
+		
+		text-decoration:none;
+	}
+	a:hover{
+		color:#e6e6e6;
 	}
 	#top{
 		display:flex;
 	}
 	#menuUItop{
 		font-size:25px;
-		width:700px(fixed);
+		width:900px;
 		height:30px;
-		background:#fff;
 		line-height:50px;
-		margin:0 auto;
+		margin:20px 0px 0px 50px;
 		text-align:center;
-		display:block;
-		border-style:solid;
-		border-color:#fff;
 		font-weight:600;
 	}
 	#menuUItop > ul > li{
@@ -53,19 +58,12 @@
 		margin-left:200px;
 		position:relative;
 	}
-	#menuUItop > ul > li:hover{
-		border-style:solid;
-		border-color:#fff #c8c8c8;
-	}
 	#cis{
 		width:320px;
-		margin:-20px;
-		font-size:20px;
-		color: #333;
-		background: #fff;
+		margin:-10px 0px 0px 0px;
+		font-size:25px;
+		color: white;
 		text-align:center;
-		border-style:solid;
-		border-color:#fff;
 		font-weight:600;
 		-ms-user-select : none;
 		-moz-user-select : -moz-none;
@@ -76,29 +74,21 @@
 	}
 	/*	화면	*/
 	#_view{
-		width:700px(fixed);
+		width:100%
 		height:650px;
 		margin:0px 20px 0px 20px;
-		display:flex;
 	}
 	/* 학사 공지 */
-	#nav{
-		width:100%;
-		height:100%;
-		float:left;
-		display:block;
-	}
-	
 	table{
-		width:900px;;
-		height:470px;
+		width:100%;;
+		height:100%;
 		border-spacing:0px;
 	}
 	tr{
 		border:3px solid;
 		background: #fff;
 		text-align:center;
-		font-size:13px;
+		font-size:20px;
 	}
 	td{
 		border:1px solid #d0d0d0;
@@ -120,28 +110,7 @@
 	#category{
 		background:#000080;
 		color:#fff;
-	}
-	/* 학교이미지 */
-	#section{
-		width:100%;
-		height:100%;
-		text-align:left;
-		float:right;
-	}
-	#left{
-		position:absolute;
-		top:300px;
-		width:40px;
-		height:40px;
-		z-index:1;
-	}
-	#right{
-		position:absolute;
-		top:300px;
-		width:40px;
-		height:40px;
-		z-index:1;
-		right:60px;
+		font-size:25px;
 	}
 	/* 사이트 관련 정보 */
 	#footer{
@@ -176,65 +145,107 @@
 		color:#0b2f3a;
 		font-weight:600;
 	}
-	
+	<!--학교 이미지-->
+	.carousel-inner > .carousel-item > img{
+		width: 100vm;
+		height: 56.25vh;
+	}
 </style>
 </head>
 <body>
-<hr color = "#323232" size="2">
-<!--  상단 메뉴부분 -->
-<div style="margin-left:50px; height:20%;" class="wrap_header">
-	<div id="top" class="container">
-		<div style="display:block">
-		<a href="/">
-			<img src="https://www.inhatc.ac.kr/sites/kr/images/common/logo_b.png" alt="인하공업전문대학">
-		</a>
-		<p id="cis">학사관리시스템</p>
+<!--학교 슬라이드 이미지-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+ integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+ crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+ integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+ crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+ crossorigin="anonymous"></script>
+<script> $('.carousel').carousel({ interval: 2000 //기본 5초 }) </script>
+<div id="demo" class="carousel slide" style="position:absolute;" data-ride="carousel">
+	<div class="carousel-inner">
+		<!-- 슬라이드 쇼 -->
+		<div class="carousel-item active">
+			<!--가로-->
+			<img class="d-block w-100"
+			src="/img/icollege.png"
+			 alt="First slide">
 		</div>
-		<div id="menuUItop" class="menuUItop">
-			<ul>
-				<li><a href="/login_cr">수강신청</a>
-				<li><a href="/login_cis">종합정보</a>
-			</ul>
+		<div class="carousel-item">
+			<img class="d-block w-100" src="https://www.inhatc.ac.kr/sites/kr/images/main/v_2.jpg" alt="Second slide">
 		</div>
-	</div>
+		<div class="carousel-item">
+			<img class="d-block w-100" src="https://www.inhatc.ac.kr/sites/kr/images/main/v_1.jpg" alt="Third slide">
+		</div>
+		<!-- / 슬라이드 쇼 끝 -->
+		<!-- 왼쪽 오른쪽 화살표 버튼 -->
+		<a class="carousel-control-prev" href="#demo" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<!-- <span>Previous</span> --></a>
+		<a class="carousel-control-next" href="#demo" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<!-- <span>Next</span> --> </a>
+		<!-- / 화살표 버튼 끝 -->
+		<!-- 인디케이터 -->
+		<ul class="carousel-indicators">
+			<li data-target="#demo" data-slide-to="0" class="active"></li>
+			<!--0번부터시작-->
+			<li data-target="#demo" data-slide-to="1"></li>
+			<li data-target="#demo" data-slide-to="2"></li>
+		</ul> <!-- 인디케이터 끝 -->
 </div>
-<!-- 뷰 부분 -->
-<hr color='#323232' size="2">
-<div id="_view">
-	<!-- 날씨, 학사공지 -->
-	<div id="nav">
-		<p id="wP" style="width:300px;margin-left:20px;">●인하공업전문대학 현재 날씨</p>
-		<div style="margin:10px 0px 30px 60px; display:flex">
-			<img th:src=${wimg} width="80px" height="80px"/>
-			<div style="display:flex">
-				<P th:text="${temperature}" id="temperatureP"></P>
-				<P th:text="${weather}" id="weatherP" style="width:50px;height:10px;"></P>
+<!--  상단 메뉴부분 -->
+<div style="position:absolute; top:0; width:98%">
+	<hr color = "white" size="2">
+	<div style="margin-left:100px; height:20%;" class="wrap_header">
+		<div id="top" class="d-flex">
+			<div style="display:block">
+				<a href="/">
+				<img src="https://www.inhatc.ac.kr/sites/kr/images/common/logo_w.png" alt="인하공업전문대학">
+				</a>
+				<p id="cis">학사관리시스템</p>
+			</div>
+			<div id="menuUItop" class="d-flex">
+				<ul>
+				<li class="item"><a href="/login_cr">수강신청</a>
+				<li class="item"><a href="/login_cis">종합정보</a>
+			</ul>
 			</div>
 		</div>
-		<div>
-		<table border="1">
-			<tr id="category">
-				<td id="td_num">번호</td>
-				<td>제목</td>
-				<td id="td_day">작성일</td>
-				<td id="td_file">첨부파일</td>
-			</tr>
-			<tr th:each = "stat : ${noticestat}">
-				<td th:text="${stat.num}">번호</td>
-				<td th:text="${stat.subject}" id="td_title">제목</td>
-				<td th:text="${stat.date}">작성일</td>
-				<td th:text="${stat.file}">첨부파일</td>
-			</tr>
-			<tr></tr>
-		</table>
+	</div>
+	<hr color='white' size="2">
+</div>
+<!-- 뷰 부분 -->
+<div id="_view">
+	<!-- 날씨, 학사공지 -->
+	<p id="wP" style="width:300px;margin-left:20px;">●인하공업전문대학 현재 날씨</p>
+	<div style="margin:10px 0px 30px 60px; display:flex">
+		<img th:src=${wimg} width="80px" height="80px"/>
+		<div style="display:flex">
+			<P th:text="${temperature}" id="temperatureP"></P>
+			<P th:text="${weather}" id="weatherP" style="width:50px;height:10px;"></P>
 		</div>
 	</div>
-	<!-- 이미지 부분 -->
-	<div id="section" style="margin-left:30px;">
-		<img src="img/left.png" id="left">
-		<img src="img/right.png" id="right">
-		<img src="img/school1.jpg" width="1000px" height="650px">
+	<div>
+	<table border="1">
+		<tr id="category">
+			<td id="td_num">번호</td>
+			<td>제목</td>
+			<td id="td_day">작성일</td>
+			<td id="td_file">첨부파일</td>
+		</tr>
+		<tr th:each = "stat : ${noticestat}">
+			<td th:text="${stat.num}">번호</td>
+			<td th:text="${stat.subject}" id="td_title">제목</td>
+			<td th:text="${stat.date}">작성일</td>
+			<td th:text="${stat.file}">첨부파일</td>
+		</tr>
+		<tr></tr>
+	</table>
 	</div>
+	<!-- 이미지 부분 -->
 </div>
 <!-- 사이트 관련 정보 -->
 <div id="footer">
