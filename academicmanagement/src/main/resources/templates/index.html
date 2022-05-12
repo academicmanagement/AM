@@ -77,29 +77,28 @@
 	/*	화면	*/
 	#_view{
 		width:700px(fixed);
-		height400px;
+		height:650px;
 		margin:0px 20px 0px 20px;
 		display:flex;
 	}
 	/* 학사 공지 */
 	#nav{
-		background-color:white;
-		width:500px;
-		height:400px;
+		width:100%;
+		height:100%;
 		float:left;
 		display:block;
 	}
 	
 	table{
-		width:500px;
-		height:450px;
+		width:900px;;
+		height:470px;
 		border-spacing:0px;
 	}
 	tr{
 		border:3px solid;
 		background: #fff;
 		text-align:center;
-		font-size:9px;
+		font-size:13px;
 	}
 	td{
 		border:1px solid #d0d0d0;
@@ -131,15 +130,14 @@
 	}
 	#left{
 		position:absolute;
-		top:450px;
+		top:300px;
 		width:40px;
 		height:40px;
 		z-index:1;
-		left:600px;
 	}
 	#right{
 		position:absolute;
-		top:450px;
+		top:300px;
 		width:40px;
 		height:40px;
 		z-index:1;
@@ -152,11 +150,8 @@
 		border-color:#323232;
 		background-color:#444444;
 		width:100%;
-		height:100px;
-		clear:both;	
-		position: absolute;
-		bottom:0px;
-		margin-left:-20px;
+		height:200px;
+		clear:both;
 	}
 	#info > p{
     	font-size: 10px;
@@ -175,12 +170,19 @@
 		margin:0 auto;
 		font-weight:600;
 	}
+	#wP{
+		font-size:20px;
+		line-height:60px;
+		color:#0b2f3a;
+		font-weight:600;
+	}
+	
 </style>
 </head>
 <body>
 <hr color = "#323232" size="2">
 <!--  상단 메뉴부분 -->
-<div style="margin-left:50px" class="wrap_header">
+<div style="margin-left:50px; height:20%;" class="wrap_header">
 	<div id="top" class="container">
 		<div style="display:block">
 		<a href="/">
@@ -201,11 +203,12 @@
 <div id="_view">
 	<!-- 날씨, 학사공지 -->
 	<div id="nav">
-		<div style="margin:30px 0px 30px 60px; display:flex">
+		<p id="wP" style="width:300px;margin-left:20px;">●인하공업전문대학 현재 날씨</p>
+		<div style="margin:10px 0px 30px 60px; display:flex">
 			<img th:src=${wimg} width="80px" height="80px"/>
 			<div style="display:flex">
 				<P th:text="${temperature}" id="temperatureP"></P>
-				<P th:text="${weather}" id="weatherP"></P>
+				<P th:text="${weather}" id="weatherP" style="width:50px;height:10px;"></P>
 			</div>
 		</div>
 		<div>
@@ -216,41 +219,29 @@
 				<td id="td_day">작성일</td>
 				<td id="td_file">첨부파일</td>
 			</tr>
-			<tr>
-				<td>번호</td>
-				<td id="td_title">제목</td>
-				<td>작성일</td>
-				<td>첨부파일</td>
-			</tr>
-			<tr>
-				<td>번호</td>
-				<td id="td_title">제목</td>
-				<td>작성일</td>
-				<td>첨부파일</td>
-			</tr>
-			<tr>
-				<td>번호</td>
-				<td id="td_title">제목</td>
-				<td>작성일</td>
-				<td>첨부파일</td>
+			<tr th:each = "stat : ${noticestat}">
+				<td th:text="${stat.num}">번호</td>
+				<td th:text="${stat.subject}" id="td_title">제목</td>
+				<td th:text="${stat.date}">작성일</td>
+				<td th:text="${stat.file}">첨부파일</td>
 			</tr>
 			<tr></tr>
 		</table>
 		</div>
 	</div>
 	<!-- 이미지 부분 -->
-	<div id="section" style="margin-left:30px">
+	<div id="section" style="margin-left:30px;">
 		<img src="img/left.png" id="left">
 		<img src="img/right.png" id="right">
-		<img src="img/school1.jpg" width="1300px" height="auto">
+		<img src="img/school1.jpg" width="1000px" height="650px">
 	</div>
-	<!-- 사이트 관련 정보 -->
-	<div id="footer">
-		<div id="info">
-			<img src="https://www.inhatc.ac.kr/sites/kr/images/common/logo_foot.png" alt="인하공업전문대학">
-			<p>222212 인천광역시 미추홀구 인하로100 인하공업전문대학 TEL 032-870-2114</p>
-			<p>COPYRIGHT(c) INHA TECHNICAL COLLEGE. ALL RIGHTS RESERVED.</p>
-		</div>
+</div>
+<!-- 사이트 관련 정보 -->
+<div id="footer">
+	<div id="info" style="margin-top:50px;text-align:center;">
+		<img src="https://www.inhatc.ac.kr/sites/kr/images/common/logo_foot.png" alt="인하공업전문대학">
+		<p>222212 인천광역시 미추홀구 인하로100 인하공업전문대학 TEL 032-870-2114</p>
+		<p>COPYRIGHT(c) INHA TECHNICAL COLLEGE. ALL RIGHTS RESERVED.</p>
 	</div>
 </div>
 </body>
