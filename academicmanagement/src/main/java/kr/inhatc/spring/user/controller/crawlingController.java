@@ -24,18 +24,18 @@ public class crawlingController {
 	@GetMapping("/")
 	public String crawling(Model model) throws Exception{
         
-        /*String URL = "https://weather.naver.com/today";
+        String URL = "https://weather.naver.com/today";
         Document doc = Jsoup.connect(URL).get();
         Elements els1 = doc.select(".current");
         //System.out.println(els1.text());
         Elements els2 = doc.select(".summary .weather");
-        //System.out.println(els2);*/
-		String URL = "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EC%9D%B8%EC%B2%9C+%EB%AF%B8%EC%B6%94%ED%99%80%EA%B5%AC+%ED%95%99%EC%9D%B5+1%EB%8F%99+%EB%82%A0%EC%94%A8&oquery=%EC%9D%B8%EC%B2%9C+%EB%AF%B8%EC%B6%94%ED%99%80%EA%B5%AC+%ED%95%99%EC%9D%B5+1%EB%8F%99%EB%82%A0%EC%94%A8&tqi=hFxVnwprvN8ssfn337lssssss6C-334548";
+        //System.out.println(els2);
+		/*String URL = "https://search.naver.com/search.naver?where=nexearch&sm=top_sly.hst&fbm=1&acr=2&acq=%EC%9D%B8%EC%B2%9C&qdt=0&ie=utf8&query=%EC%9D%B8%EC%B2%9C+%EB%AF%B8%EC%B6%94%ED%99%80%EA%B5%AC+%ED%95%99%EC%9D%B5+1%EB%8F%99+%EB%82%A0%EC%94%A8";
         Document doc = Jsoup.connect(URL).get();
         Elements els1 = doc.select("._today .temperature_text");
         System.out.println(els1.text());
         Elements els2 = doc.select(".summary .weather");
-        System.out.println(els2.text());
+        System.out.println(els2.text());*/
         
         String tels = els1.text();
         tels = tels.replace("현재 온도", " ");
