@@ -8,9 +8,6 @@ import lombok.ToString;
 @Builder
 @Getter
 public class Notice {
-	private String link;
-	private String num;
 	private String subject;
 	private String date;
-	private String file;
 }

@@ -1,7 +1,10 @@
 package kr.inhatc.spring.user.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -78,6 +81,23 @@ public class crawlingController {
         
         List<Notice> noticeList = cs.getnotice();
         model.addAttribute("noticestat", noticeList);
+        model.addAttribute("link1", "https://www.inhatc.ac.kr/kr/461/subview.do");
+        
+        List<Notice> noticeList_e = cs.getnotice_e();
+        model.addAttribute("noticeEvent", noticeList_e);
+        model.addAttribute("link2", "https://www.inhatc.ac.kr/kr/464/subview.do");
+        
+        List<Notice> noticeList_s = cs.getnotice_s();
+        model.addAttribute("noticeScholarship", noticeList_s);
+        model.addAttribute("link3", "https://www.inhatc.ac.kr/kr/463/subview.do");
+        
+        List<Notice> noticeList_em = cs.getnotice_em();
+        model.addAttribute("noticeEmployment", noticeList_em);
+        model.addAttribute("link4", "https://www.inhatc.ac.kr/kr/465/subview.do");
+        
+        List<Notice> noticeList_n = cs.getnotice_n();
+        model.addAttribute("noticeNormal", noticeList_n);
+        model.addAttribute("link5", "https://www.inhatc.ac.kr/kr/466/subview.do");
         
         return "/index";
 	}

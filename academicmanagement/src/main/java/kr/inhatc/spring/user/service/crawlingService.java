@@ -2,6 +2,7 @@ package kr.inhatc.spring.user.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,24 +16,79 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class crawlingService {
-	private static String noticeURL = "https://www.inhatc.ac.kr/kr/460/subview.do?enc=Zm5jdDF8QEB8JTJGY29tYkJicyUyRmtyJTJGMiUyRmxpc3QuZG8lM0ZmaW5kV29yZCUzRCUyNnBhZ2UlM0QxJTI2ZmluZFR5cGUlM0QlMjY%3D";
-    
 	@PostConstruct
 	public List<Notice> getnotice() throws IOException{
-		List<Notice> noticeList = new ArrayList<>();
+		String noticeURL = "https://www.inhatc.ac.kr/kr/461/subview.do";
 		Document noticeDoc = Jsoup.connect(noticeURL).get();
+		List<Notice> noticeList = new ArrayList<>();
 		Elements contents = noticeDoc.select("table tbody tr");
 		for(Element content : contents) {
-			Elements tdContents = content.select("td");
 			Notice notice = Notice.builder()
-					.link(content.select("th").text())
-					.num(tdContents.get(0).text())
-					.subject(tdContents.get(1).text())
-					.date(tdContents.get(2).text())
-					.file(tdContents.get(3).text())
+					.subject(content.select("strong").text())
+					.date(content.select(".td-date").text())
 					.build();
 			noticeList.add(notice);
 		}
 		return noticeList;
+	}
+	@PostConstruct
+	public List<Notice> getnotice_e() throws IOException{
+		String noticeURL = "https://www.inhatc.ac.kr/kr/464/subview.do";
+		Document noticeDoc = Jsoup.connect(noticeURL).get();
+		List<Notice> noticeList_e = new ArrayList<>();
+		Elements contents = noticeDoc.select("table tbody tr");
+		for(Element content : contents) {
+			Notice notice = Notice.builder()
+					.subject(content.select("strong").text())
+					.date(content.select(".td-date").text())
+					.build();
+			noticeList_e.add(notice);
+		}
+		return noticeList_e;
+	}
+	@PostConstruct
+	public List<Notice> getnotice_s() throws IOException{
+		String noticeURL = "https://www.inhatc.ac.kr/kr/463/subview.do";
+		Document noticeDoc = Jsoup.connect(noticeURL).get();
+		List<Notice> noticeList_s = new ArrayList<>();
+		Elements contents = noticeDoc.select("table tbody tr");
+		for(Element content : contents) {
+			Notice notice = Notice.builder()
+					.subject(content.select("strong").text())
+					.date(content.select(".td-date").text())
+					.build();
+			noticeList_s.add(notice);
+		}
+		return noticeList_s;
+	}
+	@PostConstruct
+	public List<Notice> getnotice_em() throws IOException{
+		String noticeURL = "https://www.inhatc.ac.kr/kr/465/subview.do";
+		Document noticeDoc = Jsoup.connect(noticeURL).get();
+		List<Notice> noticeList_em = new ArrayList<>();
+		Elements contents = noticeDoc.select("table tbody tr");
+		for(Element content : contents) {
+			Notice notice = Notice.builder()
+					.subject(content.select("strong").text())
+					.date(content.select(".td-date").text())
+					.build();
+			noticeList_em.add(notice);
+		}
+		return noticeList_em;
+	}
+	@PostConstruct
+	public List<Notice> getnotice_n() throws IOException{
+		String noticeURL = "https://www.inhatc.ac.kr/kr/466/subview.do";
+		Document noticeDoc = Jsoup.connect(noticeURL).get();
+		List<Notice> noticeList_n = new ArrayList<>();
+		Elements contents = noticeDoc.select("table tbody tr");
+		for(Element content : contents) {
+			Notice notice = Notice.builder()
+					.subject(content.select("strong").text())
+					.date(content.select(".td-date").text())
+					.build();
+			noticeList_n.add(notice);
+		}
+		return noticeList_n;
 	}
 }
