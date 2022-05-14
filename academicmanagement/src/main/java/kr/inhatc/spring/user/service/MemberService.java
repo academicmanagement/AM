@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import kr.inhatc.spring.user.repository.MemberRepository;
@@ -26,6 +29,7 @@ public class MemberService {
 	
 	ScriptUtils scriptUtils;
 
+	//모든 정보 검색
 	public List<MemberVo> findAll() {
 		List<MemberVo> members = new ArrayList<>();
 		memberRepository.findAll().forEach(e -> members.add(e));
@@ -74,6 +78,12 @@ public class MemberService {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	//페이징 처리
+	public Page<MemberVo> list(int page){
+		//RageRequest.of(우리가 보는 페이지, n개씩 페이징 처리, 내림차순 정렬)
+		return memberRepository.findAll(PageRequest.of(page, 3, Sort.by(Sort.Direction.DESC, "mbrNo")));
 	}
 	
 	//회원 정보 수정

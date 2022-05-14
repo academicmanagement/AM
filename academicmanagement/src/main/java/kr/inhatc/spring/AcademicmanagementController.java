@@ -93,10 +93,6 @@ public class AcademicmanagementController {
 	public String admin_usercreate() {
 		return "admin_usercreate";
 	}
-	@GetMapping("admin_userdelete")
-	public String admin_userdelete() {
-		return "admin_userdelete";
-	}
 	@GetMapping("admin_course")
 	public String admin_course() {
 		return "admin_course";

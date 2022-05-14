@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -130,12 +131,14 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//회원리스트
-	@GetMapping("/userList")
-	public String userList(Model model) {
-		List<MemberVo> list = memberService.findAll();
-		model.addAttribute("list", list);
-		return "/userList";
+	//회원리스트(페이징처리 포함)
+	@GetMapping("/admin_userdelete")
+	public String list(Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
+		Page<MemberVo> listPage = memberService.list(page);	//불러올 페이지의 데이터 1페이지는 0부터 시작
+		int totalPage = listPage.getTotalPages();	//총 페이지 수
+		model.addAttribute("list", listPage.getContent());	//선택된 페이지에서 검색된 데이터만 List형태로 반환
+		model.addAttribute("totalPage", totalPage);
+		return "/admin_userdelete";
 	}
 	
 	//회원삭제(한번에 선택해서 여러번 삭제 가능 Long[])
@@ -146,7 +149,7 @@ public class MemberController {
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
-		return "redirect:/userList";
+		return "redirect:/admin_userdelete";
 	}
 	
 	//관리자 로그인
@@ -155,7 +158,7 @@ public class MemberController {
 		if(pw.equals("1234")) {	//관리자 비밀번호
 			return "redirect:/admin_main";
 		}
-		scriptUtils.alertAndMovePage(response, "아이디 또는 비밀번호가 틀렸습니다!!", "/login_mg");
+		scriptUtils.alertAndMovePage(response, "비밀번호가 틀렸습니다!!", "/login_mg");
 		return "/login_mg";
 	}
 }
