@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.inhatc.spring.user.service.Notice;
+import kr.inhatc.spring.user.service.Schedule;
 import kr.inhatc.spring.user.service.crawlingService;
 
 @Controller
@@ -100,5 +101,13 @@ public class crawlingController {
         model.addAttribute("link5", "https://www.inhatc.ac.kr/kr/466/subview.do");
         
         return "/index";
+	}
+	@GetMapping("/cis_academic_calender")
+	public String crawling_s(Model model) throws Exception{
+		
+		List<Schedule> scheduleList = cs.getschedule_1();
+        model.addAttribute("schedule_1", scheduleList);
+		
+		return "/cis_academic_calender";
 	}
 }

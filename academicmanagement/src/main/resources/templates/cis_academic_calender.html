@@ -56,20 +56,26 @@
 			<td colspan="2">1학기</td>
 		</tr>
 		<tr id="category">
-			<td>행사</td>
 			<td>날짜</td>
+			<td>행사</td>
 		</tr>
-		<tr></tr>
+		<tr id="trpoint" th:each = "s: ${schedule_1}">
+			<td th:text="${s.dt}" style="font-weight:600; color:black;" ></td>
+			<td th:text="${s.dd}"></td>
+		</tr>
 	</table>
 	<table style="margin-left:50px" border="1">
 		<tr id="term">
 			<td colspan="2">2학기</td>
 		</tr>
 		<tr id="category">
-			<td>행사</td>
 			<td>날짜</td>
+			<td>행사</td>
 		</tr>
-		<tr></tr>
+		<tr id="trpoint" th:each = "s: ${schedule_2}">
+			<td th:text="${s.dt}" style="font-weight:600; color:black;" ></td>
+			<td th:text="${s.dd}"></td>
+		</tr>
 	</table>
 	</div>
 </body>

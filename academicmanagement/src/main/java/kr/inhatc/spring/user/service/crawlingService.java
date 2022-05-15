@@ -91,4 +91,122 @@ public class crawlingService {
 		}
 		return noticeList_n;
 	}
+	@PostConstruct
+	public List<Schedule> getschedule_1() throws IOException{
+		String URL = "https://www.inhatc.ac.kr/kr/123/subview.do";
+		Document Doc = Jsoup.connect(URL).get();
+		List<Schedule> ScheduleList_1 = new ArrayList<>();
+		Elements contents = Doc.select("#monthArea20222 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_1.add(sche);
+		}
+		contents = Doc.select("#monthArea20223 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_1.add(sche);
+		}
+		contents = Doc.select("#monthArea20224 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_1.add(sche);
+		}
+		contents = Doc.select("#monthArea20225 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_1.add(sche);
+		}
+		contents = Doc.select("#monthArea20226 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_1.add(sche);
+		}
+		return ScheduleList_1;
+	}
+	@PostConstruct
+	public List<Schedule> getschedule_2() throws IOException{
+		String URL = "https://www.inhatc.ac.kr/kr/123/subview.do";
+		Document Doc = Jsoup.connect(URL).get();
+		List<Schedule> ScheduleList_2 = new ArrayList<>();
+		Elements contents = Doc.select("#monthArea20227 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_2.add(sche);
+		}
+		contents = Doc.select("#monthArea20228 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_2.add(sche);
+		}
+		contents = Doc.select("#monthArea20229 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_2.add(sche);
+		}
+		contents = Doc.select("#monthArea202210 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_2.add(sche);
+		}
+		contents = Doc.select("#monthArea202211 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_2.add(sche);
+		}
+		contents = Doc.select("#monthArea202212 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_2.add(sche);
+		}
+		contents = Doc.select("#monthArea20231 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_2.add(sche);
+		}
+		contents = Doc.select("#monthArea20232 .scheList ul li dl");
+		for(Element content : contents) {
+			Schedule sche = Schedule.builder()
+					.dt(content.select("dt").text())
+					.dd(content.select("dd").text())
+					.build();
+			ScheduleList_2.add(sche);
+		}
+		return ScheduleList_2;
+	}
 }
