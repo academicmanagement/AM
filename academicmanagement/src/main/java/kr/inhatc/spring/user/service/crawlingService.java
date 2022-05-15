@@ -31,6 +31,7 @@ public class crawlingService {
 		}
 		return noticeList;
 	}
+	
 	@PostConstruct
 	public List<Notice> getnotice_e() throws IOException{
 		String noticeURL = "https://www.inhatc.ac.kr/kr/464/subview.do";
@@ -46,6 +47,7 @@ public class crawlingService {
 		}
 		return noticeList_e;
 	}
+	
 	@PostConstruct
 	public List<Notice> getnotice_s() throws IOException{
 		String noticeURL = "https://www.inhatc.ac.kr/kr/463/subview.do";
@@ -61,6 +63,7 @@ public class crawlingService {
 		}
 		return noticeList_s;
 	}
+	
 	@PostConstruct
 	public List<Notice> getnotice_em() throws IOException{
 		String noticeURL = "https://www.inhatc.ac.kr/kr/465/subview.do";
@@ -76,6 +79,7 @@ public class crawlingService {
 		}
 		return noticeList_em;
 	}
+	
 	@PostConstruct
 	public List<Notice> getnotice_n() throws IOException{
 		String noticeURL = "https://www.inhatc.ac.kr/kr/466/subview.do";
@@ -91,6 +95,7 @@ public class crawlingService {
 		}
 		return noticeList_n;
 	}
+	
 	@PostConstruct
 	public List<Schedule> getschedule_1() throws IOException{
 		String URL = "https://www.inhatc.ac.kr/kr/123/subview.do";
@@ -138,6 +143,7 @@ public class crawlingService {
 		}
 		return ScheduleList_1;
 	}
+	
 	@PostConstruct
 	public List<Schedule> getschedule_2() throws IOException{
 		String URL = "https://www.inhatc.ac.kr/kr/123/subview.do";

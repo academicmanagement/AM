@@ -22,7 +22,6 @@
 		border-spacing: 0px;
 	}
 	tr{
-		border:3px solid;
 		background: #fff;
 		padding-left: 20px;
 		text-align:left;
@@ -44,6 +43,13 @@
 		font-weight:600;
 		text-align:center;
 	}
+	tr:nth-child(odd) { background-color: white; }
+	tr:nth-child(even) { background-color: #f0f7ff; }
+	#trsche{
+		padding-left:30px;
+		font-size:20px;
+		font-weight:600;
+	}
 </style>
 </head>
 <body>
@@ -51,7 +57,7 @@
 	<p id="year">년도 : 2022</p>
 </div>
 	<div style="display:flex">
-	<table border="1">
+	<table border="1" style="border-collapse: collapse;">
 		<tr id="term">
 			<td colspan="2">1학기</td>
 		</tr>
@@ -59,9 +65,9 @@
 			<td>날짜</td>
 			<td>행사</td>
 		</tr>
-		<tr id="trpoint" th:each = "s: ${schedule_1}">
-			<td th:text="${s.dt}" style="font-weight:600; color:black;" ></td>
-			<td th:text="${s.dd}"></td>
+		<tr th:each = "s: ${schedule_1}">
+			<td id="trsche" th:text="${s.dt}" style="font-weight:600; color:black;" ></td>
+			<td id="trsche" th:text="${s.dd}"></td>
 		</tr>
 	</table>
 	<table style="margin-left:50px" border="1">
@@ -72,9 +78,9 @@
 			<td>날짜</td>
 			<td>행사</td>
 		</tr>
-		<tr id="trpoint" th:each = "s: ${schedule_2}">
-			<td th:text="${s.dt}" style="font-weight:600; color:black;" ></td>
-			<td th:text="${s.dd}"></td>
+		<tr th:each = "s: ${schedule_2}">
+			<td id="trsche" th:text="${s.dt}" style="font-weight:600; color:black;" ></td>
+			<td id="trsche" th:text="${s.dd}"></td>
 		</tr>
 	</table>
 	</div>

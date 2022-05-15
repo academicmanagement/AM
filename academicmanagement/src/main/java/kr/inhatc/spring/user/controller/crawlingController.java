@@ -102,11 +102,15 @@ public class crawlingController {
         
         return "/index";
 	}
+	
 	@GetMapping("/cis_academic_calender")
 	public String crawling_s(Model model) throws Exception{
 		
-		List<Schedule> scheduleList = cs.getschedule_1();
-        model.addAttribute("schedule_1", scheduleList);
+		List<Schedule> scheduleList1 = cs.getschedule_1();
+        model.addAttribute("schedule_1", scheduleList1);
+		
+		List<Schedule> scheduleList2 = cs.getschedule_2();
+		model.addAttribute("schedule_2", scheduleList2);
 		
 		return "/cis_academic_calender";
 	}
