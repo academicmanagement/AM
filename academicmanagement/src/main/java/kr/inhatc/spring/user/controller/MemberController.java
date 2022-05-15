@@ -50,37 +50,6 @@ public class MemberController {
 
 	ScriptUtils scriptUtils;
 
-	/*
-	 * // 모든 회원 조회
-	 * 
-	 * @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE }) public
-	 * ResponseEntity<List<MemberVo>> getAllmembers() { List<MemberVo> member =
-	 * memberService.findAll(); return new ResponseEntity<List<MemberVo>>(member,
-	 * HttpStatus.OK); }
-	 * 
-	 * // 회원번호로 한명의 회원 조회
-	 * 
-	 * @GetMapping(value = "/{mbrNo}", produces = { MediaType.APPLICATION_JSON_VALUE
-	 * }) public ResponseEntity<MemberVo> getMember(@PathVariable("mbrNo") Long
-	 * mbrNo) { Optional<MemberVo> member = memberService.findById(mbrNo); return
-	 * new ResponseEntity<MemberVo>(member.get(), HttpStatus.OK); }
-	 * 
-	 * // 회원번호로 회원 삭제
-	 * 
-	 * @DeleteMapping(value = "/{mbrNo}", produces = {
-	 * MediaType.APPLICATION_JSON_VALUE }) public ResponseEntity<Void>
-	 * deleteMember(@PathVariable("mbrNo") Long mbrNo) {
-	 * memberService.deleteById(mbrNo); return new
-	 * ResponseEntity<Void>(HttpStatus.NO_CONTENT); }
-	 * 
-	 * // 회원번호로 회원 수정(mbrNo로 회원을 찾아 Member 객체의 id, pw, dept, ban 수정함)
-	 * 
-	 * @PutMapping(value = "/{mbrNo}", produces = { MediaType.APPLICATION_JSON_VALUE
-	 * }) public ResponseEntity<MemberVo> updateMember(@PathVariable("mbrNo") Long
-	 * mbrNo, MemberVo member) { memberService.updateById(mbrNo, member); return new
-	 * ResponseEntity<MemberVo>(member, HttpStatus.OK); }
-	 */
-
 	// 로그인 체크
 	@PostMapping("/signInCis")
 	public String signInCis(HttpServletRequest request, HttpServletResponse response, MemberVo member)
@@ -131,7 +100,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//회원리스트(페이징처리 포함)
+	//삭제 회원리스트(페이징처리 포함)
 	@GetMapping("/admin_userdelete")
 	public String list(Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
 		Page<MemberVo> listPage = memberService.list(page);	//불러올 페이지의 데이터 1페이지는 0부터 시작
@@ -139,6 +108,16 @@ public class MemberController {
 		model.addAttribute("list", listPage.getContent());	//선택된 페이지에서 검색된 데이터만 List형태로 반환
 		model.addAttribute("totalPage", totalPage);
 		return "/admin_userdelete";
+	}
+	
+	//검색 - 삭제 회원리스트
+	@GetMapping("/searchMember")
+	public String list(String keyword, Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
+		Page<MemberVo> searchList = memberService.searchList(keyword, page);	//불러올 페이지의 데이터 1페이지는 0부터 시작
+		int totalPage = searchList.getTotalPages();	//총 페이지 수
+		model.addAttribute("list", searchList.getContent());	//선택된 페이지에서 검색된 데이터만 List형태로 반환
+		model.addAttribute("totalPage", totalPage);
+		return "/admin_searchdelete";
 	}
 	
 	//회원삭제(한번에 선택해서 여러번 삭제 가능 Long[])

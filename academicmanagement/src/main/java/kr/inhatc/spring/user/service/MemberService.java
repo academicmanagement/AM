@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -85,6 +86,12 @@ public class MemberService {
 		//RageRequest.of(우리가 보는 페이지, n개씩 페이징 처리, 내림차순 정렬)
 		return memberRepository.findAll(PageRequest.of(page, 3, Sort.by(Sort.Direction.DESC, "mbrNo")));
 	}
+	
+	//검색 기능
+	@Transactional
+	public Page<MemberVo> searchList(String keyword, int page) {
+		return memberRepository.findByIdContaining(keyword, PageRequest.of(page, 3, Sort.by(Sort.Direction.DESC, "mbrNo")));
+    }
 	
 	//회원 정보 수정
 	public void updateById(Long mbrNo, MemberVo member) {

@@ -3,6 +3,8 @@ package kr.inhatc.spring.user.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,8 +29,12 @@ public interface MemberRepository extends JpaRepository<MemberVo, Long>{
 	
 	public MemberVo findByIdAndPw(String id, String pw);	//id, pw 조회
 	
+	//삭제 기능 sql
 	@Transactional
 	@Modifying
 	@Query(value = DELETE_MEMBER, nativeQuery = true)
 	public void deleteMember(@Param("deleteList") Long[] deleteList);
+	
+	//검색 기능 - Containing(Like 검색)
+	public Page<MemberVo> findByIdContaining(String id, Pageable pageable);
 }
