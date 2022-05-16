@@ -100,24 +100,15 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//삭제 회원리스트(페이징처리 포함)
-	@GetMapping("/admin_userdelete")
-	public String list(Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
-		Page<MemberVo> listPage = memberService.list(page);	//불러올 페이지의 데이터 1페이지는 0부터 시작
-		int totalPage = listPage.getTotalPages();	//총 페이지 수
-		model.addAttribute("list", listPage.getContent());	//선택된 페이지에서 검색된 데이터만 List형태로 반환
-		model.addAttribute("totalPage", totalPage);
-		return "/admin_userdelete";
-	}
-	
 	//검색 - 삭제 회원리스트
-	@GetMapping("/searchMember")
-	public String list(String keyword, Model model, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
-		Page<MemberVo> searchList = memberService.searchList(keyword, page);	//불러올 페이지의 데이터 1페이지는 0부터 시작
+	@GetMapping("/admin_userdelete")
+	public String list(Model model, @RequestParam(required = false, defaultValue = "", value = "keyword") String keyword, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
+		Page<MemberVo> searchList = memberService.list(keyword, page);	//불러올 페이지의 데이터 1페이지는 0부터 시작
 		int totalPage = searchList.getTotalPages();	//총 페이지 수
 		model.addAttribute("list", searchList.getContent());	//선택된 페이지에서 검색된 데이터만 List형태로 반환
 		model.addAttribute("totalPage", totalPage);
-		return "/admin_searchdelete";
+		model.addAttribute("keyword", keyword);					//검색 키워드
+		return "/admin_userdelete";
 	}
 	
 	//회원삭제(한번에 선택해서 여러번 삭제 가능 Long[])

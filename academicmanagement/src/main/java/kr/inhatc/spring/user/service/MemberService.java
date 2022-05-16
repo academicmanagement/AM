@@ -81,17 +81,18 @@ public class MemberService {
 		}
 	}
 	
-	//페이징 처리
-	public Page<MemberVo> list(int page){
-		//RageRequest.of(우리가 보는 페이지, n개씩 페이징 처리, 내림차순 정렬)
-		return memberRepository.findAll(PageRequest.of(page, 3, Sort.by(Sort.Direction.DESC, "mbrNo")));
+	//검색 - 페이징 처리
+	public Page<MemberVo> list(String keyword, int page){
+		
+		//keyword가 없을 경우
+		if(keyword.isEmpty()) {
+			//RageRequest.of(우리가 보는 페이지, n개씩 페이징 처리, 내림차순 정렬)
+			return memberRepository.findAll(PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "mbrNo")));
+		}
+		else { //keyword가 있을 경우
+			return memberRepository.findByIdContaining(keyword, PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "mbrNo")));
+		}
 	}
-	
-	//검색 기능
-	@Transactional
-	public Page<MemberVo> searchList(String keyword, int page) {
-		return memberRepository.findByIdContaining(keyword, PageRequest.of(page, 3, Sort.by(Sort.Direction.DESC, "mbrNo")));
-    }
 	
 	//회원 정보 수정
 	public void updateById(Long mbrNo, MemberVo member) {
