@@ -22,7 +22,6 @@
 		border-spacing: 0px;
 	}
 	tr{
-		border:3px solid;
 		background: #fff;
 		padding-left: 20px;
 		text-align:left;
@@ -87,39 +86,59 @@
 		background: rgb(141,192,213);
 		background: linear-gradient(0deg, rgba(189,238,255,1) 0%, rgba(216,245,255,1) 100%);
 	}
+	tr:nth-child(odd) { background-color: white; }
+	tr:nth-child(even) { background-color: #f0f7ff; }
+	#trsche{
+		padding-left:30px;
+		font-size:20px;
+		font-weight:600;
+	}
 </style>
 </head>
 <body>
+<form action="/cschedule" autocomplete="off" method="post">
 <div style="display:flex; margin-top:-8px">
 	<p id="year">년도 : 2022</p>
-	<select style="margin-top:22.5px;">
-		<option selected>학기 선택</option>
-		<option>1학기</option>
-		<option>2학기</option>
-	</select>
-	<input type="text" placeholder="행사"/>
-	<input type="text" placeholder="날짜(ex:20220101)"/>
-	<input type="button" id="savebtn" value="등록"/>
-	<input type="button" id="savebtn" value="취소"/>
+		<select style="margin-top:22.5px;" name = "term">
+			<option selected>학기 선택</option>
+			<option>1</option>
+			<option>2</option>
+		</select>
+		<input type="hidden" name="id" th:value="${session.id}">
+		<input type="text" name="edate" placeholder="날짜 ex) 01.01 (수)"/>
+		<input type="text" name="event" placeholder="행사"/>
+		<input type="submit" id="savebtn" value="등록"/>
 </div>
+</form>
 	<div style="display:flex">
 	<table border="1">
 		<tr id="term">
-			<td colspan="2">1학기</td>
+			<td style="height:50px;" colspan="2">1학기</td>
 		</tr>
 		<tr id="category">
-			<td>행사</td>
-			<td>날짜</td>
+			<td style="height:50px;">날짜</td>
+			<td style="height:50px;">행사</td>
+		</tr>
+		<tr th:each = "t1: ${list_1}">
+			<td id="trsche" th:text="${t1.edate}" style="font-weight:600; color:black;" ></td>
+			<td id="trsche" th:text="${t1.event}"></td>
+			<form action:"/deleteId" method="post">
+			<td><input type="button"	th:value="${t1.scdNo}" /></td>
+			</form>
 		</tr>
 		<tr></tr>
 	</table>
 	<table style="margin-left:50px" border="1">
 		<tr id="term">
-			<td colspan="2">2학기</td>
+			<td style="height:50px;" colspan="2">2학기</td>
 		</tr>
 		<tr id="category">
-			<td>행사</td>
-			<td>날짜</td>
+			<td style="height:50px;">날짜</td>
+			<td style="height:50px;">행사</td>
+		</tr>
+		<tr th:each = "t2: ${list_2}">
+			<td id="trsche" th:text="${t2.edate}" style="font-weight:600; color:black;" ></td>
+			<td id="trsche" th:text="${t2.event}"></td>
 		</tr>
 		<tr></tr>
 	</table>

@@ -45,14 +45,15 @@ public class AcademicmanagementController {
 	public String review() {
 		return "cis_review";
 	}
-	/*@GetMapping("cis_academic_calender")
+	/*
+	@GetMapping("cis_academic_calender")	//CrawlingController
 	public String ac_cal() {
 		return "cis_academic_calender";
-	}*/
-	@GetMapping("cis_personal_calender")
+	}
+	@GetMapping("cis_personal_calender")	//ScheduleController
 	public String pe_cal() {
 		return "cis_personal_calender";
-	}
+	}*/
 	@GetMapping("cr_main")
 	public String cr_main() {
 		return "cr_main";
