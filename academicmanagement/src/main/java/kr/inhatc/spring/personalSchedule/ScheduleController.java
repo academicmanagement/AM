@@ -59,10 +59,10 @@ public class ScheduleController {
 		
 		return "redirect:/cis_personal_calender";
 	}
-	@PostMapping("/deleteId")
-	public String deleteMember(Model model, @RequestParam() Long deleteId) throws Exception {
+	@PostMapping("/deleteSchedule")
+	public String deleteSchedule(Model model, @RequestParam() Long[] deleteId) throws Exception {
 		try {
-			scheduleService.deleteById(deleteId);
+			scheduleService.deleteAll(deleteId);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

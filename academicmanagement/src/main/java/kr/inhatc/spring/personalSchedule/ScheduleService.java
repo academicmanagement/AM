@@ -35,10 +35,9 @@ public class ScheduleService {
 	public void deleteById(Long scdNo) {
 		scheduleRepository.deleteById(scdNo);
 	}
-	/* //선택 회원 삭제
 	public void deleteAll(Long[] deleteId) {
 		scheduleRepository.deleteSchedule(deleteId);
-	}  */
+	}
 	//일정 등록
 	public ScheduleVo save(ScheduleVo schedule) {
 		scheduleRepository.save(schedule);

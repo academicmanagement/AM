@@ -96,9 +96,9 @@
 </style>
 </head>
 <body>
-<form action="/cschedule" autocomplete="off" method="post">
 <div style="display:flex; margin-top:-8px">
 	<p id="year">년도 : 2022</p>
+	<form action="/cschedule" autocomplete="off" method="post">
 		<select style="margin-top:22.5px;" name = "term">
 			<option selected>학기 선택</option>
 			<option>1</option>
@@ -108,40 +108,65 @@
 		<input type="text" name="edate" placeholder="날짜 ex) 01.01 (수)"/>
 		<input type="text" name="event" placeholder="행사"/>
 		<input type="submit" id="savebtn" value="등록"/>
+	<button type="button" id="savebtn" onclick="sDelete()">삭제</button>
 </div>
-</form>
+	</form>
+	<form action="/deleteSchedule" id="frm" method="post">
 	<div style="display:flex">
 	<table border="1">
+		<colgroup>
+			<!-- 날짜, 행사, 체크박스 크기-->
+			<col width="47.5%" />
+			<col width="47.5%" />
+			<col width="5%" />
+		</colgroup>
 		<tr id="term">
-			<td style="height:50px;" colspan="2">1학기</td>
+			<td style="height:50px;" colspan="3">1학기</td>
 		</tr>
 		<tr id="category">
-			<td style="height:50px;">날짜</td>
-			<td style="height:50px;">행사</td>
+			<td style="height:50px;" colspan="1">날짜</td>
+			<td style="height:50px;" colspan="2">행사</td>
 		</tr>
 		<tr th:each = "t1: ${list_1}">
-			<td id="trsche" th:text="${t1.edate}" style="font-weight:600; color:black;" ></td>
-			<td id="trsche" th:text="${t1.event}"></td>
-			<form action:"/deleteId" method="post">
-			<td><input type="button"	th:value="${t1.scdNo}" /></td>
-			</form>
+			<td scope:"col" id="trsche" th:text="${t1.edate}" style="font-weight:600; color:black;" ></td>
+			<td scope:"col" id="trsche" th:text="${t1.event}"></td>
+			<td scope:"col" style="text-align:center" ><input type="checkbox" name="deleteId"
+									th:value="${t1.scdNo}" /></td>
 		</tr>
 		<tr></tr>
 	</table>
 	<table style="margin-left:50px" border="1">
 		<tr id="term">
-			<td style="height:50px;" colspan="2">2학기</td>
+			<td style="height:50px;" colspan="3">2학기</td>
 		</tr>
 		<tr id="category">
-			<td style="height:50px;">날짜</td>
-			<td style="height:50px;">행사</td>
+			<td style="height:50px;" colspan="1">날짜</td>
+			<td style="height:50px;" colspan="2">행사</td>
 		</tr>
 		<tr th:each = "t2: ${list_2}">
-			<td id="trsche" th:text="${t2.edate}" style="font-weight:600; color:black;" ></td>
-			<td id="trsche" th:text="${t2.event}"></td>
+			<td scope:"col" id="trsche" th:text="${t2.edate}" style="font-weight:600; color:black;" ></td>
+			<td scope:"col" id="trsche" th:text="${t2.event}"></td>
+			<td scope:"col" style="text-align:center" ><input type="checkbox" name="deleteId"
+									th:value="${t2.scdNo}" /></td>
 		</tr>
 		<tr></tr>
 	</table>
 	</div>
+	</form>
+	<script src="/js/lib/jquery.min.js"></script>
+	<script th:inline="javascript">
+		//회원 삭제 함수
+		function sDelete() {
+			let delInpChkLen = $("input[name='deleteId']:checked").length;
+			if (delInpChkLen > 0) {
+				if (confirm("해당 일정을 삭제하시겠습니까?")) {
+					let frm = $("#frm");
+					frm.submit();
+				}
+			} else {
+				alert("선택된 일정이 없습니다.");
+			}
+		}
+	</script>
 </body>
 </html>
