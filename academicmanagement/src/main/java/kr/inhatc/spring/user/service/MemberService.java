@@ -94,12 +94,23 @@ public class MemberService {
 		}
 	}
 	
+	//회원 정보 상세보기
+	public MemberVo getDetail(Long mbrNo) {
+		Optional<MemberVo> optional = memberRepository.findById(mbrNo);
+		if(optional.isPresent()) {
+			MemberVo member = optional.get();
+			return member;
+		}
+		else {
+			throw new NullPointerException();
+		}
+	}
+	
 	//회원 정보 수정
 	public void updateById(Long mbrNo, MemberVo member) {
 		Optional<MemberVo> e = memberRepository.findById(mbrNo);
 
 		if (e.isPresent()) {
-			e.get().setMbrNo(member.getMbrNo());
 			e.get().setId(member.getId());
 			e.get().setPw(member.getPw());
 			e.get().setDept(member.getDept());

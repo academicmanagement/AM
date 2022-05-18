@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class PrVo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-private long pNo;
+	private long pNo;
 	
 	@Column
 	private String id;

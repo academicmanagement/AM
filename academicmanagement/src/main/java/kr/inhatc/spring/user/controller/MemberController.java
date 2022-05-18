@@ -42,11 +42,11 @@ import kr.inhatc.spring.user.utils.ScriptUtils;
 @Controller
 public class MemberController {
 
-	// 기본형
+	// 기본형(삭제해도될듯)
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	MemberService memberService;
+	private MemberService memberService;
 
 	ScriptUtils scriptUtils;
 
@@ -119,6 +119,32 @@ public class MemberController {
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
+		return "redirect:/admin_userdelete";
+	}
+	
+	//회원삭제(상세페이지에서 삭제)
+	@PostMapping("/detailDelete")
+	public String detailDelete(Long mbrNo) throws Exception {
+		try {
+			memberService.deleteById(mbrNo);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		return "redirect:/admin_userdelete";
+	}
+	
+	//회원 상세페이지
+	@GetMapping("/detailMember/{mbrNo}")
+	public String detailMember(@PathVariable("mbrNo") Long mbrNo, Model model) {
+		MemberVo member = memberService.getDetail(mbrNo);
+		model.addAttribute("member", member);
+		return "/admin_userupdate";
+	}
+	
+	//회원 수정
+	@PostMapping("/updateMember")
+	public String updateMember(MemberVo member) {
+		memberService.updateById(member.getMbrNo(), member);
 		return "redirect:/admin_userdelete";
 	}
 	
