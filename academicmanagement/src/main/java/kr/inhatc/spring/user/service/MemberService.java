@@ -17,6 +17,9 @@ import org.springframework.stereotype.Service;
 import kr.inhatc.spring.user.repository.MemberRepository;
 import kr.inhatc.spring.user.utils.ScriptUtils;
 import lombok.RequiredArgsConstructor;
+import kr.inhatc.spring.Privacy.PrRepository;
+import kr.inhatc.spring.Privacy.PrVo;
+import kr.inhatc.spring.personalSchedule.ScheduleVo;
 import kr.inhatc.spring.user.dto.MemberDTO;
 import kr.inhatc.spring.user.entity.MemberVo;
 

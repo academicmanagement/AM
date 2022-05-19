@@ -17,10 +17,10 @@ public class AcademicmanagementController {
 	public String cismenu() {
 		return "cis_notice";
 	}
-	@GetMapping("cis_myinfo")
+	/*@GetMapping("cis_myinfo")
 	public String myinfo() {
 		return "cis_myinfo";
-	}
+	}*/
 	@GetMapping("cis_faminfo")
 	public String faminfo() {
 		return "cis_faminfo";

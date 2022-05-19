@@ -54,5 +54,17 @@ public class PrVo {
 			String fkname, String frelation, String fphone, String femail,
 			String bname, String bank, String bnum) {
 		this.id=id;
+		this.kname=kname;
+		this.ename=ename;
+		this.address=address;
+		this.phone=phone;
+		this.email=email;
+		this.fkname=fkname;
+		this.frelation=frelation;
+		this.fphone=fphone;
+		this.femail=femail;
+		this.bname=bname;
+		this.bank=bank;
+		this.bnum=bnum;
 	}
 }

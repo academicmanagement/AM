@@ -32,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.inhatc.spring.personalSchedule.ScheduleVo;
 import kr.inhatc.spring.user.constants.SessionConstants;
 import kr.inhatc.spring.user.dto.MemberDTO;
 import kr.inhatc.spring.user.entity.MemberVo;
