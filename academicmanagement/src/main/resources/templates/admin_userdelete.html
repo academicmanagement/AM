@@ -40,7 +40,7 @@
 						<tbody id="tbody">
 							<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
 								<td><input type="checkbox" name="deleteId" th:value="${vo.mbrNo}"/></td>
-								<td><a th:text="${vo.id}" th:href="@{'detailMember/' + ${vo.mbrNo}}"></a></td>
+								<td><a th:text="${vo.id}" name="id" th:href="@{'detailMember/' + ${vo.mbrNo}}"></a></td>
 								<td th:text="${vo.dept}"></td>
 								<td th:text="${vo.ban}"></td>
 							</tr>

@@ -82,25 +82,38 @@
 </head>
 <body>
 <p id="accinfo">은행계좌등록</p>
+<form action="/accinfo" autocomplete="off" method="post" th:each="i:${info}">
 <div id="container">
+	<input type="hidden" name="pNo" th:value="${i.pNo}">
+	<input type="hidden" name="id" th:value="${session.id}">
 	<div style="display:flex">
 		<p id="category">은행명</p>
-		<input type="text" id="bank">
+		<input type="text" id="bank" name="bank" th:value="${i.bank}">
 	</div>
 	<div style="display:flex">
 		<p id="category">통장예금주명</p>
-		<input type="text" id="name">
+		<input type="text" id="name" name="bname" th:value="${i.bname}">
 	</div>
 	<div style="display:flex">
 		<p id="category">계좌번호</p>
-		<input type="text" id="account">
+		<input type="text" id="account" name="bnum" th:value="${i.bnum}">
 	</div>
 	<div>
 		<input type="button" id="lookupbtn" value="은행계좌번호 실명 조회">
 	</div>
+	<input type="hidden" name="ename" th:value="${i.ename}">
+	<input type="hidden" name="kname" th:value="${i.kname}">
+	<input type="hidden" name="address" th:value="${i.address}">
+	<input type="hidden" name="phone" th:value="${i.phone}">
+	<input type="hidden" name="email" th:value="${i.email}">
+	<input type="hidden" name="fkname" th:value="${i.fkname}">
+	<input type="hidden" name="frelation" th:value="${i.frelation}">
+	<input type="hidden" name="fphone" th:value="${i.fphone}">
+	<input type="hidden" name="femail" th:value="${i.femail}">
 	<div>
-		<input type="button" id="savebtn" value="저장">
+		<input type="submit" id="savebtn" value="저장">
 	</div>
 </div>
+</form>
 </body>
 </html>

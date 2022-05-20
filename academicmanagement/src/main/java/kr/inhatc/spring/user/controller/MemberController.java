@@ -33,6 +33,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.inhatc.spring.Privacy.PrService;
+import kr.inhatc.spring.Privacy.PrVo;
+import kr.inhatc.spring.personalSchedule.ScheduleService;
 import kr.inhatc.spring.personalSchedule.ScheduleVo;
 import kr.inhatc.spring.user.constants.SessionConstants;
 import kr.inhatc.spring.user.dto.MemberDTO;
@@ -49,6 +52,10 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ScheduleService scheduleService;
+	@Autowired
+	private PrService prService;
 
 	ScriptUtils scriptUtils;
 
@@ -79,13 +86,13 @@ public class MemberController {
 
 	// 회원가입
 	@PostMapping("/signUp")
-	public String joinMember(HttpServletResponse response, MemberVo member) throws IOException {
-		
+	public String joinMember(HttpServletResponse response, MemberVo member, PrVo privacy) throws IOException {
 		if(memberService.findById(member)) {
 			scriptUtils.alertAndMovePage(response, "중복된 아이디입니다!", "/admin_usercreate");
 		}
 		else {
 			memberService.save(member);
+			prService.save(privacy);
 		}
 		return "/admin_usercreate";	
 	}
@@ -126,9 +133,11 @@ public class MemberController {
 	
 	//회원삭제(상세페이지에서 삭제)
 	@PostMapping("/detailDelete")
-	public String detailDelete(Long mbrNo) throws Exception {
+	public String detailDelete(Long mbrNo, String id) throws Exception {
 		try {
 			memberService.deleteById(mbrNo);
+			scheduleService.deleteById(id);
+			prService.deleteById(id);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

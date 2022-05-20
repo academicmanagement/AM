@@ -17,18 +17,6 @@ public class AcademicmanagementController {
 	public String cismenu() {
 		return "cis_notice";
 	}
-	/*@GetMapping("cis_myinfo")
-	public String myinfo() {
-		return "cis_myinfo";
-	}*/
-	@GetMapping("cis_faminfo")
-	public String faminfo() {
-		return "cis_faminfo";
-	}
-	@GetMapping("cis_accinfo")
-	public String accinfo() {
-		return "cis_accinfo";
-	}
 	@GetMapping("cis_schedule")
 	public String schedule() {
 		return "cis_schedule";
@@ -45,15 +33,6 @@ public class AcademicmanagementController {
 	public String review() {
 		return "cis_review";
 	}
-	/*
-	@GetMapping("cis_academic_calender")	//CrawlingController
-	public String ac_cal() {
-		return "cis_academic_calender";
-	}
-	@GetMapping("cis_personal_calender")	//ScheduleController
-	public String pe_cal() {
-		return "cis_personal_calender";
-	}*/
 	@GetMapping("cr_main")
 	public String cr_main() {
 		return "cr_main";
@@ -70,10 +49,6 @@ public class AcademicmanagementController {
 	public String cr_schedule() {
 		return "cr_schedule";
 	}
-	/*@GetMapping("/")
-	public String index() {
-		return "index";
-	}*/
 	@GetMapping("login_cis")
 	public String login_cis() {
 		return "login_cis";

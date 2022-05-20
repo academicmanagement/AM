@@ -79,30 +79,43 @@
 </head>
 <body>
 <p id="faminfo">부모정보등록</p>
+<form action="/faminfo" autocomplete="off" method="post" th:each="i:${info}">
 <div id="container">
+	<input type="hidden" name="pNo" th:value="${i.pNo}">
+	<input type="hidden" name="id" th:value="${session.id}">
 	<div style="display:flex">
 		<p id="category">한글 성명</p>
-		<input type="text" id="krname">
+		<input type="text" id="krname" name="fkname" th:value="${i.fkname}">
 	</div>
 	<div style="display:flex">
 		<p id="category">관계</p>
-		<select id="relationship">
-			<option value="father" selected>부</option>
-			<option value="mother">모</option>
-			<option value="other">기타</option>
+		<select id="relationship" name="frelation" >
+			<option th:value="${i.frelation}" th:text="${i.frelation}" style="color:#b0c4de"></option>
+			<option value="부">부</option>
+			<option value="모">모</option>
+			<option value="기타">기타</option>
 		</select>
 	</div>
 	<div style="display:flex">
 		<p id="category">휴대폰 번호</p>
-		<input type="text" id="phone">
+		<input type="text" id="phone" name="fphone" th:value="${i.fphone}">
 	</div>
 	<div style="display:flex">
 		<p id="category">이메일</p>
-		<input type="text" id="email">
+		<input type="text" id="email" name="femail" th:value="${i.femail}">
 	</div>
+	<input type="hidden" name="ename" th:value="${i.ename}">
+	<input type="hidden" name="kname" th:value="${i.kname}">
+	<input type="hidden" name="address" th:value="${i.address}">
+	<input type="hidden" name="phone" th:value="${i.phone}">
+	<input type="hidden" name="email" th:value="${i.email}">
+	<input type="hidden" name="bname" th:value="${i.bname}">
+	<input type="hidden" name="bank" th:value="${i.bank}">
+	<input type="hidden" name="bnum" th:value="${i.bnum}">
 	<div>
-		<input type="button" id="savebtn" value="저장">
+		<input type="submit" id="savebtn" value="저장">
 	</div>
 </div>
+</form>
 </body>
 </html>

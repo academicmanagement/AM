@@ -38,6 +38,7 @@
 		<form action="/detailDelete" id="frm" method="post">
 			<div class="float-right">
 				<input type="hidden" name="mbrNo" th:value="${member.mbrNo}">
+				<input type="hidden" name="id" th:value="${member.id}">
 				<button type="button" class="btn btn-danger" th:onclick="fnViewDelete()">Delete</button>
 			</div>
 		</form>

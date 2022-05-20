@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.inhatc.spring.personalSchedule.ScheduleVo;
 import kr.inhatc.spring.user.entity.MemberVo;
@@ -19,9 +20,16 @@ public class PrService {
 		List<PrVo> privacy = prRepository.findById(id);
 		return privacy;
 	}
-	/*//회원 정보 수정
-	public void updateById(String id, PrVo privacy) {
-		Optional<PrVo> e = prRepository.findById(id);
+	public PrVo save(PrVo privacy) {
+		prRepository.save(privacy);
+		return privacy;
+	}
+	public void deleteById(String id) {
+		prRepository.deleteById(id);
+	}
+	//회원 정보 수정
+	public void updateById(Long pNo, PrVo privacy) {
+		Optional<PrVo> e = prRepository.findById(pNo);
 
 		if (e.isPresent()) {
 			e.get().setId(privacy.getId());
@@ -41,5 +49,5 @@ public class PrService {
 		}else {
 			throw new NullPointerException();
 		}
-	}*/
+	}
 }

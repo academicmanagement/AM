@@ -32,8 +32,8 @@ public class ScheduleService {
 		return schedule;
 	}
 	//일정 삭제
-	public void deleteById(Long scdNo) {
-		scheduleRepository.deleteById(scdNo);
+	public void deleteById(String id) {
+		scheduleRepository.deleteById(id);
 	}
 	public void deleteAll(Long[] deleteId) {
 		scheduleRepository.deleteSchedule(deleteId);

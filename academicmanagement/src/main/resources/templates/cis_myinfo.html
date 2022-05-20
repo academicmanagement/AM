@@ -68,31 +68,41 @@
 </head>
 <body>
 <p id="myinfo">개인정보등록(학생)</p>
-
+<form action="/myinfo" autocomplete="off" method="post" th:each="i:${info}">
 <div id="container">
+	<input type="hidden" name="pNo" th:value="${i.pNo}">
+	<input type="hidden" name="id" th:value="${session.id}">
 	<div style="display:flex">
 		<p id="category">영문 성명</p>
-		<input type="text" id="engname">
+		<input type="text" id="engname" name="ename" th:value="${i.ename}">
 	</div>
 	<div style="display:flex">
 		<p id="category">한글 성명</p>
-		<input type="text" id="krname">
+		<input type="text" id="krname" name="kname" th:value="${i.kname}">
 	</div>
 	<div style="display:flex">
 		<p id="category">주소</p>
-		<input type="text" id="address">
+		<input type="text" id="address" name="address" th:value="${i.address}">
 	</div>
 	<div style="display:flex">
 		<p id="category">휴대폰 번호</p>
-		<input type="text" id="phone">
+		<input type="text" id="phone" name="phone" th:value="${i.phone}">
 	</div>
 	<div style="display:flex">
 		<p id="category">이메일</p>
-		<input type="text" id="email">
+		<input type="text" id="email" name="email" th:value="${i.email}">
 	</div>
+	<input type="hidden" name="fkname" th:value="${i.fkname}">
+	<input type="hidden" name="frelation" th:value="${i.frelation}">
+	<input type="hidden" name="fphone" th:value="${i.fphone}">
+	<input type="hidden" name="femail" th:value="${i.femail}">
+	<input type="hidden" name="bname" th:value="${i.bname}">
+	<input type="hidden" name="bank" th:value="${i.bank}">
+	<input type="hidden" name="bnum" th:value="${i.bnum}">
 	<div>
 		<input type="submit" id="savebtn" value="저장">
 	</div>
 </div>
+</form>
 </body>
 </html>

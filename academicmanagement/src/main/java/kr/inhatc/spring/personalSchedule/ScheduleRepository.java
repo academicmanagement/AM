@@ -30,4 +30,5 @@ public interface ScheduleRepository extends JpaRepository<ScheduleVo, Long> {
 	@Modifying
 	@Query(value = DELETE_SCHEDULE, nativeQuery = true)
 	public void deleteSchedule(@Param("deleteList") Long[] deleteList);
+	public void deleteById(String id);
 }
