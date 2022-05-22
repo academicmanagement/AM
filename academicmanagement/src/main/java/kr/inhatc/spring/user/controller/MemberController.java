@@ -122,9 +122,11 @@ public class MemberController {
 	
 	//회원삭제(한번에 선택해서 여러번 삭제 가능 Long[])
 	@PostMapping("/deleteMember")
-	public String deleteMember(Model model, @RequestParam() Long[] deleteId) throws Exception {
+	public String deleteMember(Model model, @RequestParam() Long[] deleteId, String id) throws Exception {
 		try {
 			memberService.deleteAll(deleteId);
+			scheduleService.deleteById(id);
+			prService.deleteById(id);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
