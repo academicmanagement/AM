@@ -28,11 +28,53 @@ public class CourseController {
 	//강의등록
 	@PostMapping("/signCourse")
 	public String signCourse(HttpServletResponse response, CourseVo course) throws IOException {
-		if(courseService.findByCode(course)) {
-			scriptUtils.alertAndMovePage(response, "중복된 코드입니다!", "/admin_course");
-		}
-		else {
-			courseService.save(course);
+		if(course.getCrgrade().equals("")) {
+			scriptUtils.alertAndMovePage(response, "학년을 입력하세요.", "/admin_course");
+		} else {
+			if(course.getCrcode().equals("")) {
+				scriptUtils.alertAndMovePage(response, "코드를 입력하세요.", "/admin_course");
+			} else {
+				if(course.getCrban().equals("")) {
+					scriptUtils.alertAndMovePage(response, "분반을 입력하세요.", "/admin_course");
+				} else {
+					if(course.getCrname().equals("")) {
+						scriptUtils.alertAndMovePage(response, "교과목명을 입력하세요.", "/admin_course");
+					} else {
+						if(course.getCrclass().equals("")) {
+							scriptUtils.alertAndMovePage(response, "이수구분을 입력하세요.", "/admin_course");
+						} else {
+							if(course.getCredit().equals("")) {
+								scriptUtils.alertAndMovePage(response, "학점을 입력하세요.", "/admin_course");
+							} else {
+								if(course.getCrprofessor().equals("")) {
+									scriptUtils.alertAndMovePage(response, "담당교수를 입력하세요.", "/admin_course");
+								} else {
+									if(course.getCrdate().equals("")) {
+										scriptUtils.alertAndMovePage(response, "강의시간을 입력하세요.", "/admin_course");
+									} else {
+										if(course.getCrlimit().equals("")) {
+											scriptUtils.alertAndMovePage(response, "인원제한을 입력하세요.", "/admin_course");
+										} else {
+											if(course.getCrperson().equals("")) {
+												scriptUtils.alertAndMovePage(response, "수강인원을 입력하세요.", "/admin_course");
+											} else {
+												if(course.getCrdept().equals("")) {
+													scriptUtils.alertAndMovePage(response, "개설학과를 입력하세요.", "/admin_course");
+												} else {
+													if(courseService.findByCode(course)) {
+														scriptUtils.alertAndMovePage(response, "중복된 코드입니다!", "/admin_course");
+													}
+													else courseService.save(course);
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 		return "redirect:/admin_course";
 	}

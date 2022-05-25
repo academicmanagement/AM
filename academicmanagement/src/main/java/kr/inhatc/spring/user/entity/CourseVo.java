@@ -33,7 +33,7 @@ public class CourseVo {
 	@Column
 	private String crclass;	//이수구분
 	@Column
-	private double credit;	//학점
+	private String credit;	//학점
 	@Column
 	private String crprofessor;	//담당교수
 	@Column
@@ -46,7 +46,7 @@ public class CourseVo {
 	private String crdept;	//개설학과
 	
 	@Builder
-	public CourseVo(String crgrade, String crcode, String crban, String crname, String crclass, double credit, String crprofessor, String crdate, String crlimit, String crperson, String crdept	) {
+	public CourseVo(String crgrade, String crcode, String crban, String crname, String crclass, String credit, String crprofessor, String crdate, String crlimit, String crperson, String crdept	) {
 		this.crgrade = crgrade;
 		this.crcode = crcode;
 		this.crban = crban;
