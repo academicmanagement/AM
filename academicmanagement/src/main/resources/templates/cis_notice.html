@@ -14,6 +14,7 @@
 		border-spacing: 0px;
 	}
 	tr{
+		height:50px;
 		border:3px solid;
 		background: #fff;
 		text-align: center;
@@ -21,6 +22,7 @@
 	td{
 		border:1px solid #d0d0d0;
 		height: 30px;
+		font-size:20px;
 	}
 	#td_num{
 		width: 70px;
@@ -43,45 +45,35 @@
 		color: #fff;
 		font-weight:600;
 	}
+	a{
+		text-decoration:none;
+		color:white;
+	}
+	a:link{
+		text-decoration:none;
+	}
+	a:hover{
+		color:#e6e6e6;
+	}
+	tr:nth-child(odd) { background-color: white; }
+	tr:nth-child(even) { background-color: #f0f7ff; }
+	tr:nth-child(odd):hover { background-color: #ffffd8; }
+	tr:nth-child(even):hover { background-color: #ffffd8; }
 </style>
 </head>
 <body>
 	<p id="notice"> ▲ 공지사항</p>
 	<table border="1">
 		<tr id="category">
-			<td id="td_num">번호</td>
-			<td id="td_job">관련업무</td>
 			<td>제목</td>
-			<td id="td_wrname">작성자명</td>
 			<td id="td_day">작성일자</td>
 		</tr>
-		<tr>
-			<td>번호</td>
-			<td>관련업무</td>
-			<td id="td_title">제목</td>
-			<td>작성자명</td>
-			<td>작성일자</td>
-		</tr>
-		<tr>
-			<td>번호</td>
-			<td>관련업무</td>
-			<td id="td_title">제목</td>
-			<td>작성자명</td>
-			<td>작성일자</td>
-		</tr>
-		<tr>
-			<td>번호</td>
-			<td>관련업무</td>
-			<td id="td_title">제목</td>
-			<td>작성자명</td>
-			<td>작성일자</td>
-		</tr>
-		<tr>
-			<td>번호</td>
-			<td>관련업무</td>
-			<td id="td_title">제목</td>
-			<td>작성자명</td>
-			<td>작성일자</td>
+		<tr th:each = "notice: ${noticestat}">
+			<td id="td_title">
+				<a th:href="${link1}" target="_blank">
+				<strong th:text="${notice.subject}" style="font-weight:600; color:black;" ></strong>
+			</td>
+			<td th:text="${notice.date}">작성일</td>
 		</tr>
 		<tr></tr>
 	</table>

@@ -13,10 +13,6 @@ public class AcademicmanagementController {
 	public String hello() {
 		return "cis_main";
 	}
-	@GetMapping("cis_notice")
-	public String cismenu() {
-		return "cis_notice";
-	}
 	@GetMapping("cis_schedule")
 	public String schedule() {
 		return "cis_schedule";

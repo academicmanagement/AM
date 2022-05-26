@@ -115,6 +115,16 @@
 </style>
 </head>
 <body>
+<script type="text/javascript"> 
+function calcHeight(){
+ var the_height=
+ document.getElementById('_view').contentWindow.
+ document.body.scrollHeight+100;
+ document.getElementById('_view').height=
+ the_height;
+ document.getElementById('_view').style.overflow = "hidden";
+}
+</script>
 <hr color = "#323232" size="2">
 <!-- 상단 메뉴부분 -->
 <div style="margin-left:50px; width:1700px;" class="wrap_header">
@@ -143,6 +153,6 @@
 	</div>
 </div>
 <hr color = "#323232" size="2">
-<iframe src = "/cr_registration" id="_view" name="_view"></iframe>
+<iframe src = "/cr_registration" id="_view" onload="calcHeight();" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:94%; min-height:750px;" name="_view"></iframe>
 </body>
 </html>
