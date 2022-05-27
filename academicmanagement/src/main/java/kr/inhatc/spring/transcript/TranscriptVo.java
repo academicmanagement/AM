@@ -34,15 +34,18 @@ public class TranscriptVo {
 	@Column
 	private String grade;	//성적
 	@Column
+	private int credit; 	//시수
+	@Column
 	private double score;	//학점
 
 	@Builder
-	public TranscriptVo(String division, String id, String crname, String ygt, String grade, double score) {
+	public TranscriptVo(String division, String id, String crname, String ygt, String grade, int credit, double score) {
 		this.division = division;
 		this.id = id;
 		this.crname = crname;
 		this.ygt = ygt;
 		this.grade = grade;
+		this.credit = credit;
 		this.score = score;
 	}
 }

@@ -18,7 +18,6 @@
 		width:300px;
 		height:50px;
 		margin-left:30px;
-		margin-top:20px;
 		background: #fff;
 		border: 1px solid #5b7a8b;
 		padding-left:10px;
@@ -27,20 +26,20 @@
 		color: #2e607d;
 	}
 	table{
-		width:1400px;
+		width:95%;
 		margin-left:40px;
-		margin-right:40px;
 		height:500px;
-		border-spacing: 0px;
+		border-spacing:0px;
+		border-color:#bcbcbc
 	}
 	tr{
-		border:3px solid;
 		background: #fff;
 		text-align: center;
+		border:0.1;
 	}
 	td{
 		height:50px;
-		border:1px solid #d0d0d0;
+		border:1px solid #bcbcbc;
 	}
 	#category{
 		background: #A8C8F9;
@@ -59,30 +58,78 @@
 		padding-left: 20px;
 		text-align:left;
 	}
+	#btn{
+		width:100px;
+		height:50px;
+		background: rgb(131,139,178);
+		margin-left:30px;
+		margin-top:18px;
+		color:#fff;
+		text-align: center;
+		font-size:20px;
+		font-weight: 600;
+		cursor: pointer;
+		outline: none;
+		border-color:#96b8c4;
+		transition: all 0.3s ease;
+		background: linear-gradient(0deg, rgba(168,200,249,1) 0%, rgba(195,219,255,1) 100%);
+	}
+	#btn:hover{
+		color:black;
+		background: rgb(141,192,213);
+		background: linear-gradient(0deg, rgba(189,238,255,1) 0%, rgba(216,245,255,1) 100%);
+	}
+	tr:nth-child(odd) { background-color: white; }
+	tr:nth-child(even) { background-color: #fefcfc; }
+	#score{
+		font-weight:600;
+		background:#dbf3fd;
+	}
 </style>
 </head>
 <body>
 <div style="display:flex">
 	<p id="reportcard">성적조회</p>
-	<select id="lookup">
-		<option value="전체" selected>전체</option>
-		<option value="2022년도 3학년 1학기">2022년도 3학년 1학기</option>
+	<form action="/s_transcript" style="margin-top:-5;" method="post">
+	<select id="lookup" name="ygt">
+		<option value="전체">전체</option>
+		<option th:each="y:${yeargradeterm}" th:text="${y.ygt}"></option>
 	</select>
+	<input type="submit" id="btn" value="조회"/>
+	</form>
 </div>
 	<table border="1">
 		<tr id="category">
-			<td id="td_division">이수구분</td>
+			<td id="td_division" >이수구분</td>
 			<td>교과목명</td>
 			<td id="td_score">성적</td>
 			<td id="td_grades">학점</td>
 		</tr>
-		<tr>
-			<td>교양</td>
-			<td id="left">일본어회화</td>
-			<td>A+</td>
-			<td>4.5</td>
+		<tr th:each="t : ${transcript}">
+			<td th:text="${t.division}">교양</td>
+			<td id="left" th:text="${t.crname}">일본어회화</td>
+			<td th:text="${t.grade}">A+</td>
+			<td th:text="${t.score}">4.5</td>
 		</tr>
 		<tr></tr>
+	</table>
+	<table id="sctable" style="height:50px; border:1">
+		<tr>
+			<td id="score">신청</td>
+			<td>0</td>
+			<td id="score">취득</td>
+			<td>0</td>
+			<td id="score">전공</td>
+			<td>0</td>
+			<td id="score">교양</td>
+			<td>0</td>
+			<td id="score">총점</td>
+			<td>0</td>
+			<td id="score">평점</td>
+			<td>0</td>
+			<td id="score">환산</td>
+			<td>0</td>
+		</tr>
 	</table>
 </body>
 </html>
