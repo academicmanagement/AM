@@ -2,6 +2,7 @@ package kr.inhatc.spring.user.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -67,6 +68,44 @@ public class CourseService {
 		}
 		else { //keyword가 있을 경우
 			return courseRepository.findByCrcodeContaining(keyword, PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "crNo")));
+		}
+	}
+	
+	//수강신청 했을 때 수강인원 +1
+	public boolean crReg(String crcode) {
+		CourseVo e = courseRepository.findByCrcode(crcode);
+		
+		try {
+			if(e.getCrcode() != null) {
+				if(e.getCrperson() < e.getCrlimit()) {
+					e.setCrperson(e.getCrperson() + 1);
+					courseRepository.save(e);
+					return true;
+				}
+				else return false;
+			}
+			return false;
+		} catch (Exception e2) {
+			return false;
+		}
+	}
+	
+	//수강취소 했을 때 수강인원 -1
+	public boolean crCancle(String crcode, CourseVo course) {
+		CourseVo e = courseRepository.findByCrcode(crcode);
+		
+		try {
+			if(e.getCrcode() != null) {
+				if(course.getCrperson() < course.getCrlimit()) {
+					e.setCrperson(course.getCrperson() - 1);
+					courseRepository.save(course);
+					return true;
+				}
+				else return false;
+			}
+			return false;
+		} catch (Exception e2) {
+			return false;
 		}
 	}
 }

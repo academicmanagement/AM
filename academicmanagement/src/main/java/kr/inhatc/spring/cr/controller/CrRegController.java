@@ -3,7 +3,9 @@ package kr.inhatc.spring.cr.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,22 +33,35 @@ public class CrRegController {
 	
 	//수강신청
 	@PostMapping("/signCrReg")
-	public String signCrReg(HttpServletResponse response, CrRegVo course) throws IOException {
-		if(crRegService.findByCode(course)) {
+	public String signCrReg(HttpServletResponse response, CrRegVo crreg) throws IOException {
+		if(crRegService.findByIdAndCrcode(crreg)) {
 			scriptUtils.alertAndMovePage(response, "이미 신청된 강의입니다.", "/cr_registration");
 		}
-		else crRegService.save(course);
-		return "redirect:/cr_registration";
+		else {
+			if(courseService.crReg(crreg.getCrcode())) {
+				scriptUtils.alertAndMovePage(response, "수강신청이 완료되었습니다.", "/cr_registration");
+				crRegService.save(crreg);
+			}
+			else scriptUtils.alertAndMovePage(response, "수강인원이 초과되었습니다.", "/cr_registration");
+		}
+		
+		return "/cr_registration";
 	}
 	
 	//검색 - 삭제 회원리스트
 	@GetMapping("/cr_registration")
-	public String list(Model model, @RequestParam(required = false, defaultValue = "", value = "keyword") String keyword, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
-		Page<CourseVo> searchList = courseService.list(keyword, page);	//불러올 페이지의 데이터 1페이지는 0부터 시작
+	public String list(HttpServletRequest request, Model model, @RequestParam(required = false, defaultValue = "", value = "keyword") String keyword, @RequestParam(required = false, defaultValue = "", value = "searchType") String searchType, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
+		Page<CourseVo> searchList = crRegService.list(keyword, searchType, page);	//불러올 페이지의 데이터 1페이지는 0부터 시작
 		int totalPage = searchList.getTotalPages();	//총 페이지 수
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		System.out.println("접속중인 ID: "+id);
+		
+		model.addAttribute("id", id);
 		model.addAttribute("list", searchList.getContent());	//선택된 페이지에서 검색된 데이터만 List형태로 반환
 		model.addAttribute("totalPage", totalPage);
-		model.addAttribute("keyword", keyword);					//검색 키워드
+		model.addAttribute("keyword", keyword);					//교과목명 키워드
+		model.addAttribute("searchType", searchType);			//이수구분 키워드
 		return "/cr_registration";
 	}
 	

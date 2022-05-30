@@ -18,6 +18,18 @@
 		font-weight:500;
 		color: #2e607d;
 	}
+	#signInput > form > input[type="number"]{
+		width:90px;
+		height:35px;
+		margin-left:10px;
+		margin-top:15px;
+		background: #fff;
+		border: 1px solid #5b7a8b;
+		padding-left:10px;
+		font-size:15px;
+		font-weight:500;
+		color: #2e607d;
+	}
 	#registrationbtn{
 		width:100px;
 		height:40px;
@@ -61,16 +73,16 @@
 					<input type="text" name ="crban" placeholder="분반"/>
 					<input type="text" name ="crname" style="width:150px" placeholder="교과목명"/>
 					<input type="text" name ="crclass" placeholder="이수구분"/>
-					<input type="text" name ="credit" placeholder="학점"/>
+					<input type="number" name ="credit" placeholder="학점"/>
 					<input type="text" name ="crprofessor" placeholder="담당교수"/>
 					<input type="text" name ="crdate" style="width:150px" placeholder="강의시간"/>
-					<input type="text" name ="crlimit" placeholder="인원제한"/>
-					<input type="text" name ="crperson" placeholder="수강인원"/>
+					<input type="number" name ="crlimit" placeholder="인원제한"/>
+					<input type="number" name ="crperson" placeholder="수강인원"/>
 					<input type="text" name ="crdept" style="width:150px" placeholder="개설학과"/>
 					<input type="submit" id="registrationbtn" value="등록"/>
 				</form>
 			</div>
-    		<!-- (회원)게시판 -->
+    		<!-- (수강)게시판 -->
 			<form action="/deleteCourse" id="frm" method="post">
 				<div class="col-md-12 mt-4">
 					<table class="table table-striped table-horizontal table-bordered mt-3">

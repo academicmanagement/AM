@@ -21,6 +21,9 @@ public interface CrRegRepository extends JpaRepository<CrRegVo, Long>{
 	//코드 조회
 	public CrRegVo findByCrcode(String crcode);
 	
+	//id, 코드조회
+	public CrRegVo findByIdAndCrcode(String id, String crcode);
+	
 	//삭제 기능 sql
 	@Transactional
 	@Modifying

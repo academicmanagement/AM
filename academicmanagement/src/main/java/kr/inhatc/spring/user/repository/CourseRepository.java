@@ -28,4 +28,7 @@ public interface CourseRepository extends JpaRepository<CourseVo, Long>{
 	
 	//검색 기능 - Containing(Like 검색)
 	public Page<CourseVo> findByCrcodeContaining(String crcode, Pageable pageable);
+	public Page<CourseVo> findByCrnameContaining(String crname, Pageable pageable);
+	public Page<CourseVo> findByCrclassContaining(String crclass, Pageable pageable);
+	public Page<CourseVo> findByCrnameContainingAndCrclassContaining(String crname, String crclass, Pageable pageable);
 }

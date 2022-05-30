@@ -29,22 +29,33 @@ public class CrRegService {
 	
 	//모든 정보 검색
 	public List<CrRegVo> findAll(){
-		List<CrRegVo> course = new ArrayList<>();
-		crRegRepository.findAll().forEach(e -> course.add(e));
-		return course;
+		List<CrRegVo> crreg = new ArrayList<>();
+		crRegRepository.findAll().forEach(e -> crreg.add(e));
+		return crreg;
 	}
 	
 	//수강신청
-	public CrRegVo save(CrRegVo course) {
-		crRegRepository.save(course);
-		return course;
+	public CrRegVo save(CrRegVo crreg) {
+		crRegRepository.save(crreg);
+		return crreg;
 	}
 	
 	//강의 코드 찾기
-	public boolean findByCode(CrRegVo course) {
+	public boolean findByCode(CrRegVo crreg) {
 		try {
-			CrRegVo findCode = crRegRepository.findByCrcode(course.getCrcode());
+			CrRegVo findCode = crRegRepository.findByCrcode(crreg.getCrcode());
 			if(findCode.getCrcode() != null) return true;
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	//강의코드, 회원아이디 찾기
+	public boolean findByIdAndCrcode(CrRegVo crreg) {	
+		try {
+			CrRegVo findCr = crRegRepository.findByIdAndCrcode(crreg.getId(), crreg.getCrcode());
+			if(findCr.getId() != null && findCr.getCrcode() !=null) return true;
 			return false;
 		} catch (Exception e) {
 			return false;
@@ -62,15 +73,20 @@ public class CrRegService {
 	}
 	
 	//검색 - 페이징 처리
-	public Page<CourseVo> list(String keyword, int page){
-		
-		//keyword가 없을 경우
-		if(keyword.isEmpty()) {
+	public Page<CourseVo> list(String keyword, String searchType,int page){
+		if(searchType.isEmpty() && keyword.isEmpty()) { //searchType,keyword가 없을 경우
 			//RageRequest.of(우리가 보는 페이지, n개씩 페이징 처리, 내림차순 정렬)
 			return courseRepository.findAll(PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "crNo")));
 		}
-		else { //keyword가 있을 경우
-			return courseRepository.findByCrcodeContaining(keyword, PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "crNo")));
+		else if(searchType.isEmpty() && !(keyword.isEmpty())) {	//searchType는 없고 keyword는 있을 경우
+			return courseRepository.findByCrnameContaining(keyword, PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "crNo")));
 		}
+		else if(!(searchType.isEmpty()) && keyword.isEmpty()){ //searchType는 있고 keyword는 없을 경우
+			return courseRepository.findByCrclassContaining(searchType, PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "crNo")));
+		}
+		else if(!(searchType.isEmpty()) && !(keyword.isEmpty())) {	//둘 다 있는 경우
+			return courseRepository.findByCrnameContainingAndCrclassContaining(keyword, searchType,PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "crNo")));
+		}
+		return courseRepository.findByCrnameContainingAndCrclassContaining(keyword, searchType,PageRequest.of(page, 4, Sort.by(Sort.Direction.DESC, "crNo")));
 	}
 }
