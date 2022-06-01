@@ -58,6 +58,12 @@ public class CourseService {
 		courseRepository.deleteCourse(deleteId);
 	}
 	
+	//crcode 회원 조회
+	public List<CourseVo> seleteCrcode(String[] crcode) {
+		List<CourseVo> cd = courseRepository.seleteCourse(crcode);
+		return cd;
+	}
+	
 	//검색 - 페이징 처리
 	public Page<CourseVo> list(String keyword, int page){
 		
@@ -91,14 +97,14 @@ public class CourseService {
 	}
 	
 	//수강취소 했을 때 수강인원 -1
-	public boolean crCancle(String crcode, CourseVo course) {
+	public boolean crCancle(String crcode) {
 		CourseVo e = courseRepository.findByCrcode(crcode);
 		
 		try {
 			if(e.getCrcode() != null) {
-				if(course.getCrperson() < course.getCrlimit()) {
-					e.setCrperson(course.getCrperson() - 1);
-					courseRepository.save(course);
+				if(e.getCrperson() < e.getCrlimit()) {
+					e.setCrperson(e.getCrperson() - 1);
+					courseRepository.save(e);
 					return true;
 				}
 				else return false;

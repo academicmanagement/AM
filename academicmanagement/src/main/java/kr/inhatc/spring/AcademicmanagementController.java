@@ -29,10 +29,6 @@ public class AcademicmanagementController {
 	public String cr_main() {
 		return "cr_main";
 	}
-	@GetMapping("cr_cancle")
-	public String cr_cancle() {
-		return "cr_cancle";
-	}
 	@GetMapping("cr_schedule")
 	public String cr_schedule() {
 		return "cr_schedule";

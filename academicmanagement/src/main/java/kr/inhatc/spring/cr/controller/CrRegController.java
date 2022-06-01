@@ -1,6 +1,7 @@
 package kr.inhatc.spring.cr.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,7 @@ public class CrRegController {
 		return "/cr_registration";
 	}
 	
-	//검색 - 삭제 회원리스트
+	//검색 - 수강신청 개인리스트
 	@GetMapping("/cr_registration")
 	public String list(HttpServletRequest request, Model model, @RequestParam(required = false, defaultValue = "", value = "keyword") String keyword, @RequestParam(required = false, defaultValue = "", value = "searchType") String searchType, @RequestParam(required = false, defaultValue = "0", value = "page") int page) {
 		Page<CourseVo> searchList = crRegService.list(keyword, searchType, page);	//불러올 페이지의 데이터 1페이지는 0부터 시작
@@ -65,14 +66,40 @@ public class CrRegController {
 		return "/cr_registration";
 	}
 	
-	//수강신청삭제(한번에 선택해서 여러번 삭제 가능 Long[])
-	@PostMapping("/deleteCrReg")
-	public String deleteCrReg(Model model, @RequestParam() Long[] deleteId) throws Exception {
-		try {
-			crRegService.deleteAll(deleteId);
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
+	//수강취소 개인리스트
+	@GetMapping("/cr_cancle")
+	public String cList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String id =(String)session.getAttribute("id");
+		System.out.println("접속중인 ID: "+id);
+	  
+		List<CrRegVo> crreg = crRegService.findById(id);
+		String[] crcode = new String[20];
+		
+		for(int i=0; i < crreg.size(); i++) {
+			crcode[i] = crreg.get(i).getCrcode();
+			System.out.println(crcode[i]);
 		}
-		return "redirect:/cr_registration";
+	  
+		List<CourseVo> list = courseService.seleteCrcode(crcode);
+		
+		model.addAttribute("id", id);
+		model.addAttribute("list", list);
+		  
+		return "/cr_cancle";
+	  }
+	 
+	
+	//수강신청삭제
+	@PostMapping("/deleteCrReg")
+	public String deleteCrReg(HttpServletResponse response, String id, String crcode) throws IOException {
+		if(courseService.crCancle(crcode)) {
+			scriptUtils.alertAndMovePage(response, "해당 강의가 취소되었습니다.", "/cr_cancle");
+			CrRegVo findCr = crRegService.findAppNo(id, crcode);
+			crRegService.deleteCourse(findCr.getAppNo());
+		}
+		
+		return "/cr_cancle";
 	}
+	
 }

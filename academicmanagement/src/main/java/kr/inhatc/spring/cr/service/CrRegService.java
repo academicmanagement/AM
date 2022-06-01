@@ -61,18 +61,29 @@ public class CrRegService {
 			return false;
 		}
 	}
+
+	public CrRegVo findAppNo(String id, String crcode) {
+		try {
+			CrRegVo findCr = crRegRepository.findByIdAndCrcode(id, crcode);
+			if(findCr.getId() != null && findCr.getCrcode() !=null) return findCr;
+			return null;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	//해당 회원 아이디의 신청한 강의코드 찾기
+	public List<CrRegVo> findById(String id) {
+		List<CrRegVo> crreg = crRegRepository.findById(id);
+		return crreg;
+	}
 	
 	//수강신청 삭제
 	public void deleteCourse(Long appNo) {
 		crRegRepository.deleteById(appNo);
 	}
 	
-	//선택 수강 삭제
-	public void deleteAll(Long[] deleteId) {
-		crRegRepository.deleteCrReg(deleteId);
-	}
-	
-	//검색 - 페이징 처리
+	//검색 - 수강신청 페이징 처리
 	public Page<CourseVo> list(String keyword, String searchType,int page){
 		if(searchType.isEmpty() && keyword.isEmpty()) { //searchType,keyword가 없을 경우
 			//RageRequest.of(우리가 보는 페이지, n개씩 페이징 처리, 내림차순 정렬)
