@@ -93,7 +93,7 @@
 	<form action="/s_transcript" style="margin-top:-5;" method="post">
 	<select id="lookup" name="ygt">
 		<option value="전체">전체</option>
-		<option th:each="y:${yeargradeterm}" th:text="${y.ygt}"></option>
+		<option th:each="y:${yeargradeterm}" th:text="${y}"></option>
 	</select>
 	<input type="submit" id="btn" value="조회"/>
 	</form>
@@ -116,19 +116,19 @@
 	<table id="sctable" style="height:50px; border:1">
 		<tr>
 			<td id="score">신청</td>
-			<td>0</td>
+			<td th:text="${Credit}">0</td>
 			<td id="score">취득</td>
-			<td>0</td>
+			<td th:text="${Credit}">0</td>
 			<td id="score">전공</td>
-			<td>0</td>
+			<td th:text="${MAJOR}">0</td>
 			<td id="score">교양</td>
-			<td>0</td>
+			<td th:text="${GE}">0</td>
 			<td id="score">총점</td>
-			<td>0</td>
+			<td th:text="${ALL}">0</td>
 			<td id="score">평점</td>
-			<td>0</td>
+			<td th:text="${GPA}">0</td>
 			<td id="score">환산</td>
-			<td>0</td>
+			<td th:text="${CSCORE}">0</td>
 		</tr>
 	</table>
 </body>

@@ -53,4 +53,8 @@ public class AcademicmanagementController {
 	public String admin_usercreate() {
 		return "admin_usercreate";
 	}
+	@GetMapping("usercreate")
+	public String usercreate() {
+		return "usercreate";
+	}
 }

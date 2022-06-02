@@ -72,13 +72,21 @@
 	}
 	/*화면*/
 	#_view{
-		width: 96%;
-		height: 750px;
-		margin: 0px 20px 0px 20px;
+		margin: 0px 0px 0px 30px;
 	}
 </style>
 </head>
 <body>
+<script type="text/javascript"> 
+function calcHeight(){
+ var the_height=
+ document.getElementById('_view').contentWindow.
+ document.body.scrollHeight+100;
+ document.getElementById('_view').height=
+ the_height;
+ document.getElementById('_view').style.overflow = "hidden";
+}
+</script>
 <hr color = "#323232" size="2">
 <!-- 상단 메뉴부분 -->
 <div style="margin-left:50px; width:1700px;" class="wrap_header">
@@ -91,7 +99,7 @@
 		</div>
 		<div id="menuUItop" class="menuUItop">
 			<ul>
-				<li><a href="/admin_usercreate" target="_view">계정 생성</a>
+				<li><a href="/usercreate" target="_view">계정 생성</a>
 				</li>
 				<li><a href="/admin_userdelete" target="_view">계정 관리</a>
 				</li>
@@ -102,6 +110,6 @@
 	</div>
 </div>
 <hr color = "#323232" size="2">
-<iframe src = "/admin_usercreate" id="_view" name="_view"></iframe>
+<iframe src = "/usercreate" id="_view" onload="calcHeight();" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:96%; min-height:650px;" name="_view"></iframe>
 </body>
 </html>
