@@ -102,4 +102,26 @@ public class CrRegController {
 		return "/cr_cancle";
 	}
 	
+	//개인시간표
+	@GetMapping("/cr_schedule")
+	public String sList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String id =(String)session.getAttribute("id");
+		System.out.println("접속중인 ID: "+id);
+	  
+		List<CrRegVo> crreg = crRegService.findById(id);
+		String[] crcode = new String[20];
+		
+		for(int i=0; i < crreg.size(); i++) {
+			crcode[i] = crreg.get(i).getCrcode();
+			System.out.println(crcode[i]);
+		}
+	  
+		List<CourseVo> list = courseService.seleteCrcode(crcode);
+		
+		model.addAttribute("id", id);
+		model.addAttribute("list", list);
+		  
+		return "/cr_schedule";
+	  }
 }

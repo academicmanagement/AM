@@ -29,10 +29,6 @@ public class AcademicmanagementController {
 	public String cr_main() {
 		return "cr_main";
 	}
-	@GetMapping("cr_schedule")
-	public String cr_schedule() {
-		return "cr_schedule";
-	}
 	@GetMapping("login_cis")
 	public String login_cis() {
 		return "login_cis";
