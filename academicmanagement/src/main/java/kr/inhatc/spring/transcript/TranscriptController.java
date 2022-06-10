@@ -30,11 +30,11 @@ public class TranscriptController {
 		
 		List<TranscriptVo> list = transcriptService.findById(id);
 		
-		List<String> l = new ArrayList<>();
+		List<String> l = new ArrayList<>();			//중복제거를 위해
 		for(int i=0 ; i<list.size(); i++) {
 			l.add(list.get(i).getYgt());
 		}
-		HashSet<String> h = new HashSet<String>(l);
+		HashSet<String> h = new HashSet<String>(l); //중복제거
 		model.addAttribute("yeargradeterm", h);
 		model.addAttribute("transcript", list);
 		
@@ -57,7 +57,7 @@ public class TranscriptController {
 				}else {										//성적 계산
 					allscore = allscore + 2*list.get(i).getScore();
 				}
-			}else { 										//전공이론, 전공실습
+			}else { 										//전공이론, 전공실습, 전공필수
 				major = major + list.get(i).getCredit();
 				allscore = allscore + 3*list.get(i).getScore();
 			}
@@ -87,7 +87,7 @@ public class TranscriptController {
 		for(int i=0 ; i<y.size(); i++) {
 			l.add(y.get(i).getYgt());
 		}
-		HashSet<String> h = new HashSet<String>(l);
+		HashSet<String> h = new HashSet<String>(l); //중복제거
 		model.addAttribute("yeargradeterm", h);
 		
 		if(ygt.equals("전체")) {

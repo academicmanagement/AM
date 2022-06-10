@@ -37,6 +37,7 @@ import kr.inhatc.spring.Privacy.PrService;
 import kr.inhatc.spring.Privacy.PrVo;
 import kr.inhatc.spring.personalSchedule.ScheduleService;
 import kr.inhatc.spring.personalSchedule.ScheduleVo;
+import kr.inhatc.spring.transcript.TranscriptService;
 import kr.inhatc.spring.user.constants.SessionConstants;
 import kr.inhatc.spring.user.dto.MemberDTO;
 import kr.inhatc.spring.user.entity.MemberVo;
@@ -56,6 +57,8 @@ public class MemberController {
 	private ScheduleService scheduleService;
 	@Autowired
 	private PrService prService;
+	@Autowired
+	private TranscriptService transcriptService;
 
 	ScriptUtils scriptUtils;
 
@@ -140,6 +143,7 @@ public class MemberController {
 			memberService.deleteById(mbrNo);
 			scheduleService.deleteById(id);
 			prService.deleteById(id);
+			transcriptService.deleteById(id);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

@@ -1,4 +1,4 @@
-package kr.inhatc.spring.cr.entity;
+package kr.inhatc.spring.review;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,29 +13,34 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "crreg")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)	//디폴트 생성자 생성
-@Data	//getter, setter, ToString 생성
-public class CrRegVo {
-	//기본키 설정
+@Table(name="review")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Data
+public class RvVo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long appNo;		//신청번호
+	private long rvNo;
 	
 	@Column
-	private String crcode;	//과목코드
+	private String id;
 	@Column
-	private String crname;	//과목명
+	private String crname;
+	@Column
+	private String crcode;
 	@Column
 	private String crprofessor;
 	@Column
-	private String id;	//로그인 아이디
-
+	private String rating;
+	@Column
+	private String crreview;
+	
 	@Builder
-	public CrRegVo(String crcode, String crname, String crprofessor, String id) {
-		this.crcode = crcode;
-		this.crname = crname;
-		this.crprofessor = crprofessor;
+	public RvVo(String id, String crname, String crcode, String crprofessor, String rating, String crreview) {
 		this.id = id;
+		this.crname = crname;
+		this.crcode = crcode;
+		this.crprofessor = crprofessor;
+		this.rating = rating;
+		this.crreview = crreview;
 	}
 }

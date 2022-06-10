@@ -21,10 +21,6 @@ public class AcademicmanagementController {
 	public String course() {
 		return "cis_course";
 	}
-	@GetMapping("cis_review")
-	public String review() {
-		return "cis_review";
-	}
 	@GetMapping("cr_main")
 	public String cr_main() {
 		return "cr_main";

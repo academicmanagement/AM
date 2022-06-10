@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.inhatc.spring.cr.entity.CrRegVo;
 import kr.inhatc.spring.cr.service.CrRegService;
+import kr.inhatc.spring.review.RvService;
+import kr.inhatc.spring.review.RvVo;
 import kr.inhatc.spring.user.entity.CourseVo;
 import kr.inhatc.spring.user.service.CourseService;
 import kr.inhatc.spring.user.utils.ScriptUtils;
@@ -29,12 +31,14 @@ public class CrRegController {
 	private CrRegService crRegService;
 	@Autowired
 	private CourseService courseService;
+	@Autowired
+	private RvService rvService;
 	
 	ScriptUtils scriptUtils;
 	
 	//수강신청
 	@PostMapping("/signCrReg")
-	public String signCrReg(HttpServletResponse response, CrRegVo crreg) throws IOException {
+	public String signCrReg(HttpServletResponse response, HttpServletRequest request, CrRegVo crreg, RvVo review) throws IOException {
 		if(crRegService.findByIdAndCrcode(crreg)) {
 			scriptUtils.alertAndMovePage(response, "이미 신청된 강의입니다.", "/cr_registration");
 		}
@@ -42,6 +46,7 @@ public class CrRegController {
 			if(courseService.crReg(crreg.getCrcode())) {
 				scriptUtils.alertAndMovePage(response, "수강신청이 완료되었습니다.", "/cr_registration");
 				crRegService.save(crreg);
+				rvService.save(review);
 			}
 			else scriptUtils.alertAndMovePage(response, "수강인원이 초과되었습니다.", "/cr_registration");
 		}
@@ -97,6 +102,7 @@ public class CrRegController {
 			scriptUtils.alertAndMovePage(response, "해당 강의가 취소되었습니다.", "/cr_cancle");
 			CrRegVo findCr = crRegService.findAppNo(id, crcode);
 			crRegService.deleteCourse(findCr.getAppNo());
+			rvService.deleteByIdAndCrcode(id, crcode);
 		}
 		
 		return "/cr_cancle";
