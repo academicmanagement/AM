@@ -36,6 +36,13 @@ public class CrRegService {
 	
 	//수강신청
 	public CrRegVo save(CrRegVo crreg) {
+		CourseVo e = courseRepository.findByCrcode(crreg.getCrcode());
+		String crname = e.getCrname();
+		String crprofessor = e.getCrprofessor();
+		String crdate = e.getCrdate();
+		crreg.setCrname(crname);
+		crreg.setCrprofessor(crprofessor);
+		crreg.setCrdate(crdate);
 		crRegRepository.save(crreg);
 		return crreg;
 	}

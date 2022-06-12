@@ -49,8 +49,7 @@ public class CrRegController {
 				rvService.save(review);
 			}
 			else scriptUtils.alertAndMovePage(response, "수강인원이 초과되었습니다.", "/cr_registration");
-		}
-		
+		}	
 		return "/cr_registration";
 	}
 	
@@ -105,12 +104,12 @@ public class CrRegController {
 			rvService.deleteByIdAndCrcode(id, crcode);
 		}
 		
-		return "/cr_cancle";
+		return "redirect:/cr_cancle";
 	}
 	
 	//개인시간표
 	@GetMapping("/cr_schedule")
-	public String sList(HttpServletRequest request, Model model) {
+	public String sList(HttpServletRequest request, Model model) throws IOException {
 		HttpSession session = request.getSession();
 		String id =(String)session.getAttribute("id");
 		System.out.println("접속중인 ID: "+id);

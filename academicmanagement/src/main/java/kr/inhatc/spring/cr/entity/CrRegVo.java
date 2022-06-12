@@ -27,15 +27,18 @@ public class CrRegVo {
 	@Column
 	private String crname;	//과목명
 	@Column
-	private String crprofessor;
+	private String crprofessor;	//교수명
 	@Column
 	private String id;	//로그인 아이디
+	@Column
+	private String crdate;	//강의시간
 
 	@Builder
-	public CrRegVo(String crcode, String crname, String crprofessor, String id) {
+	public CrRegVo(String crcode, String crname, String crprofessor, String id, String crdate) {
 		this.crcode = crcode;
 		this.crname = crname;
 		this.crprofessor = crprofessor;
 		this.id = id;
+		this.crdate = crdate;
 	}
 }

@@ -102,7 +102,7 @@ public class CourseService {
 		
 		try {
 			if(e.getCrcode() != null) {
-				if(e.getCrperson() < e.getCrlimit()) {
+				if(e.getCrperson() <= e.getCrlimit()) {
 					e.setCrperson(e.getCrperson() - 1);
 					courseRepository.save(e);
 					return true;
