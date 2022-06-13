@@ -117,6 +117,7 @@
 <form action="/review_s" method="post">
 <div style="display:flex">
 	<p id="review">강의리뷰</p>
+	<input type="hidden" name="id" th:value="${session.id}">
 	<select name="crname">
 		<option selected disabled>--선택--</option>
 		<option th:each="c:${Course}" th:text="${c.crname}"></option>

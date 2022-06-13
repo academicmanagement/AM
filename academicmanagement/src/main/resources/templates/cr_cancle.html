@@ -33,9 +33,7 @@
 <body>
 	<p id="regist"> ▲ 수강신청취소</p>
 	<!-- (수강)게시판 -->
-	<form action="/deleteCrReg" id="frm" method="post">
 		<div class="col-md-12 mt-4">
-		<input type="hidden" name="id" th:value="${session.id}">
 			<table class="table table-striped table-horizontal table-bordered mt-3">
 				<colgroup>
 					<!-- 수강취소,학년,코드,분반,교과목명,이수구분,학점,담당교수,강의시간,인원제한,수강인원,개설학과,리뷰-->
@@ -72,6 +70,8 @@
 				</thead>
 				<tbody id="tbody">
 					<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+						<form action="/deleteCrReg" id="frm" method="post">
+						<input type="hidden" name="id" th:value="${session.id}">
 						<td><button type="submit"  name="crcode" th:value="${vo.crcode}">취소</button></td>
 						<td th:text="${vo.crgrade}"></td>
 						<td th:text="${vo.crcode}"></td>
@@ -84,7 +84,14 @@
 						<td th:text="${vo.crlimit}"></td>
 						<td th:text="${vo.crperson}"></td>
 						<td th:text="${vo.crdept}"></td>
-						<td><input type="button" value="리뷰"/></td>
+						</form>
+						<td>
+							<form action="/goreview" method="post">
+							<input type="hidden" name="crname" th:value="${vo.crname}"/>
+							<input type="hidden" name="crprofessor" th:value="${vo.crprofessor}"/>
+							<button type="submit" name="btn"/>리뷰</button>
+							</form>
+						</td>
 					</tr>
 					<tr th:unless="${#lists.size(list)} > 0">
 						<td colspan="13">신청한 강의가 없습니다.</td>
@@ -92,6 +99,5 @@
 				</tbody>
 			</table>
 		</div>
-	</form>
 </body>
 </html>
