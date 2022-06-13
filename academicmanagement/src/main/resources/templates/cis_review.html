@@ -126,7 +126,7 @@
 </div>
 </form>
 <form action="/review_update" method="post">
-<div th:each="r:${Review}">
+<div  th:each="r:${Review}">
 <input type="hidden" id="stars" th:value="${r.rating}"/>
 <input type="hidden" name="rvNo" th:value="${r.rvNo}">
 <input type="hidden" name="crcode" th:value="${r.crcode}"/>

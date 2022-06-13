@@ -32,9 +32,11 @@
 						</thead>
 						<tbody id="tbody">
 							<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+								<div th:if="${not #strings.isEmpty(vo.crreview)}">
 								<td><a th:text="${vo.id}" name="id"></a></td>
 								<td th:text="${vo.crreview}"></td>
 								<td th:text="${vo.rating}"></td>
+								</div>
 							</tr>
 							<tr th:unless="${#lists.size(list)} > 0">
 								<td colspan="4">조회된 결과가 없습니다.</td>
