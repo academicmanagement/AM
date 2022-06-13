@@ -121,7 +121,7 @@
 						</thead>
 						<tbody id="tbody">
 							<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
-								<td><input type="checkbox" name="deleteId" th:value="${vo.crNo}"/></td>
+								<td><input type="checkbox" name="deleteId" th:value="${vo.crcode}"/></td>
 								<td th:text="${vo.crgrade}"></td>
 								<td th:text="${vo.crcode}"></td>
 								<td th:text="${vo.crban}"></td>
@@ -173,12 +173,12 @@
 			let delInpChkLen = $("input[name='deleteId']:checked").length;
 
 			if (delInpChkLen > 0) {
-				if (confirm("해당 회원을 삭제하시겠습니까?")) {
+				if (confirm("해당 강의을 삭제하시겠습니까?")) {
 					let frm = $("#frm");
 					frm.submit();
 				}
 			} else {
-				alert("선택된 회원이 없습니다.");
+				alert("선택된 강의가 없습니다.");
 			}
 		}
 		//검색기능

@@ -16,16 +16,24 @@ import kr.inhatc.spring.cr.entity.CrRegVo;
 @Repository
 @Transactional
 public interface CrRegRepository extends JpaRepository<CrRegVo, Long>{
+	
+	static final String DELETE_CRREG = "DELETE FROM CRREG " + "WHERE CRCODE IN (:deleteList)";
 
 	//코드 조회
 	public CrRegVo findByCrcode(String crcode);
 	
 	//id, 코드조회
 	public CrRegVo findByIdAndCrcode(String id, String crcode);
-
+	
 	//id조회
 	public List<CrRegVo> findById(String id);
 	
 	//검색 기능 - Containing(Like 검색)
 	public Page<CrRegVo> findByCrcodeContaining(String crcode, Pageable pageable);
+	
+	//삭제 기능 sql
+	@Transactional
+	@Modifying
+	@Query(value = DELETE_CRREG, nativeQuery = true)
+	public void deleteCrreg(@Param("deleteList") String[] deleteList);
 }

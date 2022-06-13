@@ -97,7 +97,7 @@ public class MemberController {
 			memberService.save(member);
 			prService.save(privacy);
 		}
-		return "/usercreate";	
+		return "/admin_usercreate";	
 	}
 
 	// 로그아웃

@@ -1,95 +1,99 @@
-<!DOCTYPE HTML>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<title>계정 생성</title>
-<style type="text/css">
-	#uc{
-		width:220px;
-		height:40px;
-		text-align: center;
-		background: #000080;
-		color: #fff;
-		font-weight:600;
-		margin-left:40px;
-		padding-top:10px;
-		font-size:20px;
-	}
-	#container{
-		width:95%;
-		height: 630px;
-		margin-left:40px;
-		background: #ddeeff;
-		border: 2px solid #a6c6e6;
-	}
-	#category{
-		width:180px;
-		height:40px;
-		margin:50px 0px 0px 200px;
-		text-align: center;
-		background: #83b1c9;
-		color: #fff;
-		border: 1px solid #5b7a8b;
-		padding-top:10px;
-		font-size:20px;
-		font-weight:600;
-	}
-	input[type="text"]{
-		width:800px;
-		height:45px;
-		margin:50px 0px 0px 40px;
-		background: #fff;
-		border: 1px solid #5b7a8b;
-		padding-left:20px;
-		font-size:20px;
-		font-weight:500;
-		color: #2e607d;
-	}
-	#savebtn{
-		width:120px;
-		height:45px;
-		background: rgb(131,139,178);
-		margin-left:700px;
-		margin-top:50px;
-		color:#fff;
-		text-align: center;
-		font-size:20px;
-		font-weight: 600;
-		cursor: pointer;
-		border-radius: 5px;
-		outline: none;
-		transition: all 0.3s ease;
-		background: linear-gradient(0deg, rgba(130,174,193,1) 0%, rgba(155,214,239,1) 100%);
-	}
-	#savebtn:hover{
-		background: rgb(141,192,213);
-		background: linear-gradient(0deg, rgba(141,192,213,1) 0%, rgba(207,236,251,1) 100%);
-	}
-</style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계정생성</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    body {
+      min-height: 100vh;
+
+      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+    }
+
+    .input-form {
+      max-width: 650px;
+
+      margin-top: 80px;
+      padding: 32px;
+
+      background: #fff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+    }
+  </style>
 </head>
+
 <body>
-<form action="/signUp" autocomplete="off" method="post">
-<p id="uc">계정 생성</p>
-<div id="container">
-	<div style="display:flex">
-		<p id="category">아이디(학번)</p>
-		<input type="text" id="id" name="id">
-	</div>
-	<div style="display:flex">
-		<p id="category">비밀번호(생년월일)</p>
-		<input type="text" id="pw" name="pw">
-	</div>
-	<div style="display:flex">
-		<p id="category">학과</p>
-		<input type="text" id="dept" name="dept">
-	</div>
-	<div style="display:flex">
-		<p id="category">반</p>
-		<input type="text" id="ban" name="ban">
-	</div>
-	<div>
-		<button type="submit" id="savebtn">저장</button>
-	</div>
-</div>
-</form>
+  <div class="container">
+    <div class="input-form-backgroud row">
+      <div class="input-form col-md-12 mx-auto">
+        <h4 class="mb-3">계정생성</h4>
+        <form class="validation-form" action="/signUp" autocomplete="off" method="post" novalidate>
+          <div class="mb-3">
+            <label for="id">아이디(학번)</label>
+            <input type="text" class="form-control" id="id" name="id" placeholder="ex)201745001" required>
+            <div class="invalid-feedback">
+              아이디를 입력해주세요.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password">비밀번호(생년월일)</label>
+            <input type="text" class="form-control" id="password" name="pw" placeholder="ex)980101" required>
+            <div class="invalid-feedback">
+              비밀번호를 입력해주세요.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="dept">학과</label>
+            <input type="text" class="form-control" id="password" name="dept" required>
+            <div class="invalid-feedback">
+              학과를 입력해주세요.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="ban">반</label>
+            <input type="text" class="form-control" id="password" name="ban" required>
+            <div class="invalid-feedback">
+              반을 입력해주세요.
+            </div>
+          </div>
+          <hr class="mb-4">
+          <div class="mb-4"></div>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">등록</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
+
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  </script>
 </body>
 </html>

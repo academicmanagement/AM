@@ -108,7 +108,7 @@ public class CrRegController {
 	}
 	
 	//개인시간표
-	@GetMapping("/cr_schedule")
+	@GetMapping("/student_schedule")
 	public String sList(HttpServletRequest request, Model model) throws IOException {
 		HttpSession session = request.getSession();
 		String id =(String)session.getAttribute("id");
@@ -127,6 +127,6 @@ public class CrRegController {
 		model.addAttribute("id", id);
 		model.addAttribute("list", list);
 		  
-		return "/cr_schedule";
+		return "/student_schedule";
 	  }
 }

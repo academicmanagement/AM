@@ -89,6 +89,10 @@ public class CrRegService {
 	public void deleteCourse(Long appNo) {
 		crRegRepository.deleteById(appNo);
 	}
+	//강의관리에서 강의 삭제 시 신청되어 있던 수강들도 함께 삭제
+	public void deleteAll(String[] deleteId) {
+		crRegRepository.deleteCrreg(deleteId);
+	}
 	
 	//검색 - 수강신청 페이징 처리
 	public Page<CourseVo> list(String keyword, String searchType,int page){

@@ -17,7 +17,7 @@ import kr.inhatc.spring.user.entity.CourseVo;
 @Transactional
 public interface CourseRepository extends JpaRepository<CourseVo, Long>{
 	
-	static final String DELETE_COURSE = "DELETE FROM COURSE " + "WHERE CR_NO IN (:deleteList)";
+	static final String DELETE_COURSE = "DELETE FROM COURSE " + "WHERE CRCODE IN (:deleteList)";
 	static final String SELETE_COURSE = "SELECT * FROM COURSE " + "WHERE CRCODE IN (:crcodeList)";
 
 	//코드 조회
@@ -27,7 +27,7 @@ public interface CourseRepository extends JpaRepository<CourseVo, Long>{
 	@Transactional
 	@Modifying
 	@Query(value = DELETE_COURSE, nativeQuery = true)
-	public void deleteCourse(@Param("deleteList") Long[] deleteList);
+	public void deleteCourse(@Param("deleteList") String[] deleteList);
 	
 	//조회 기능 sql
 	@Transactional

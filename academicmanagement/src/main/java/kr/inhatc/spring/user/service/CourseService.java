@@ -54,7 +54,7 @@ public class CourseService {
 	}
 	
 	//선택 회원 삭제
-	public void deleteAll(Long[] deleteId) {
+	public void deleteAll(String[] deleteId) {
 		courseRepository.deleteCourse(deleteId);
 	}
 	

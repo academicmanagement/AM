@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.inhatc.spring.cr.service.CrRegService;
 import kr.inhatc.spring.user.entity.CourseVo;
 import kr.inhatc.spring.user.service.CourseService;
 import kr.inhatc.spring.user.utils.ScriptUtils;
@@ -22,6 +23,8 @@ public class CourseController {
 	
 	@Autowired
 	private CourseService courseService;
+	@Autowired
+	private CrRegService crRegService;
 	
 	ScriptUtils scriptUtils;
 	
@@ -46,11 +49,12 @@ public class CourseController {
 		return "/admin_course";
 	}
 	
-	//회원삭제(한번에 선택해서 여러번 삭제 가능 Long[])
+	//강의삭제(한번에 선택해서 여러번 삭제 가능 Long[])
 	@PostMapping("/deleteCourse")
-	public String deleteMember(Model model, @RequestParam() Long[] deleteId) throws Exception {
+	public String deleteMember(Model model, @RequestParam() String[] deleteId) throws Exception {
 		try {
 			courseService.deleteAll(deleteId);
+			crRegService.deleteAll(deleteId);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
