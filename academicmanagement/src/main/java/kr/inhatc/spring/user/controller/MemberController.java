@@ -91,7 +91,7 @@ public class MemberController {
 	@PostMapping("/signUp")
 	public String joinMember(HttpServletResponse response, MemberVo member, PrVo privacy) throws IOException {
 		if(memberService.findById(member)) {
-			scriptUtils.alertAndMovePage(response, "중복된 아이디입니다!", "/usercreate");
+			scriptUtils.alertAndMovePage(response, "중복된 아이디입니다!", "/admin_usercreate");
 		}
 		else {
 			memberService.save(member);
